@@ -20,14 +20,15 @@ class LoginActivity : AppCompatActivity() {
     private fun listiners() {
         binding.apply {
             botaoLogin.setOnClickListener {
-//                abrirNovaTela(ActivityBuscarPersonagens::class.java) }
-                botaoCadastrar.setOnClickListener {
-//                abrirNovaTela(ActivityCadastroUser::class.java) }
-                }
+                abrirNovaTela(TelaInicialActivity::class.java)
             }
-
+            botaoCadastrar.setOnClickListener {
+                abrirNovaTela(CadastroActivity::class.java)
+            }
         }
-
     }
+
+
+
 
 }

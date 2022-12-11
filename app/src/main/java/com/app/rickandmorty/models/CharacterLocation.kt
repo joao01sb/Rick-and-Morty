@@ -6,4 +6,4 @@ import kotlinx.serialization.Serializable
 data class CharacterLocation(
     val name: String,
     val url: String
-)
+) : java.io.Serializable

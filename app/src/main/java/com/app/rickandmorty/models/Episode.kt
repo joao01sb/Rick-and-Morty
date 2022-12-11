@@ -9,4 +9,4 @@ data class Episode(
     val airDate: String,
     val episode: String,
     val characters: List<String>
-)
+) : java.io.Serializable

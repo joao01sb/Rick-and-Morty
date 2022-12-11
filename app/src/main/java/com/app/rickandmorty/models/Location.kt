@@ -9,4 +9,4 @@ data class Location (
     val type: String,
     val dimension: String,
     val residents: List<String>,
-)
+) : java.io.Serializable
