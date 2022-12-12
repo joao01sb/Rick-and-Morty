@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/personagens_navigation"
+    app:startDestination="listaPersonagensFragment">
+
+    <fragment
+        android:id="@+id/listaPersonagensFragment"
+        android:name="com.app.rickandmorty.ui.fragment.ListaPersonagensFragment"
+        android:label="ListaPersonagensFragment" >
+        <action
+            android:id="@+id/action_listaPersonagensFragment_to_detalhesPersonagemFragment"
+            app:destination="@id/detalhesPersonagemFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detalhesPersonagemFragment"
+        android:name="com.app.rickandmorty.ui.fragment.DetalhesPersonagemFragment"
+        android:label="DetalhesPersonagemFragment">
+        <argument
+            android:name="Personagem"
+            app:argType="com.app.rickandmorty.models.Personagem" />
+    </fragment>
+
+
+
+
+</navigation>

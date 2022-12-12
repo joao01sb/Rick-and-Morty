@@ -4,14 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.app.rickandmorty.R
 import com.app.rickandmorty.ui.adapter.AdapterPersonagens
 import com.app.rickandmorty.databinding.ActivityInicioBinding
-import com.app.rickandmorty.services.BuscarPersonagens
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 class TelaInicialActivity : AppCompatActivity() {

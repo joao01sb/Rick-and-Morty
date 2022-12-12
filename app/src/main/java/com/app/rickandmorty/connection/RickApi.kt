@@ -1,4 +1,4 @@
-package com.app.rickandmorty.connection.endpt
+package com.app.rickandmorty.connection
 
 import com.app.rickandmorty.models.Personagem
 import com.app.rickandmorty.models.RespList
@@ -15,9 +15,8 @@ interface RickApi {
     suspend fun buscarPersonagem(@Url url: String): Response<Personagem>
 
     @Headers("Content-Type: application/json; charset=UTF-8", "Accept: application/json")
-    @GET
+    @GET("character")
     suspend fun buscarPersonagem1(
-        @Url url: String,
         @Query("page") page: Int? = null
     ): RespList<Personagem>
 }
