@@ -5,7 +5,6 @@ package com.app.rickandmorty.data
 //abstract class AppDataBase : RoomDatabase() {
 //
 //    abstract fun buscarPersonagemFavorito(): PersonagemDAO
-//    abstract fun buscarUser() : UsuarioDAO
 //
 //    companion object {
 //        fun instancia(context: Context): AppDataBase = Room.databaseBuilder(
