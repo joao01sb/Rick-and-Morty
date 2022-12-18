@@ -2,10 +2,15 @@ package com.app.rickandmorty.models
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import kotlinx.serialization.Serializable
 
 @Serializable
+@Entity
 data class Personagem(
+    @PrimaryKey
     val id: Int,
     val name: String?,
     val status: String?,
@@ -15,5 +20,5 @@ data class Personagem(
     val origin: CharacterLocation?,
     val location: CharacterLocation,
     val image: String?,
-    val episode: List<String>?
+//    val episode: List<String>?
 ) : java.io.Serializable

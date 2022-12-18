@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.app.rickandmorty.connection.RickApi
 import com.app.rickandmorty.models.Personagem
 
-class PersonagensRepository(
+class PersonagensRepository1(
     private val apiRick: RickApi
 ) {
 

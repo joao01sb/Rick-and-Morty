@@ -12,7 +12,7 @@ interface RickApi {
 
     @Headers("Content-Type: application/json; charset=UTF-8", "Accept: application/json")
     @GET
-    suspend fun buscarPersonagem(@Url url: String): Response<Personagem>
+    suspend fun buscarPersonagem(@Url url: String): Response<Personagem?>
 
     @Headers("Content-Type: application/json; charset=UTF-8", "Accept: application/json")
     @GET("character")

@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -45,6 +46,15 @@ dependencies {
     def room_version = "2.4.1"
     def lifecycle_version = "2.5.0-alpha02"
     def koin_android_version= "3.3.1"
+    def nav_version = "2.5.3"
+    def paging_version = "3.1.1"
+
+    //paging adapter
+    implementation "androidx.paging:paging-runtime:$paging_version"
+
+    // navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     // internet conexao
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"

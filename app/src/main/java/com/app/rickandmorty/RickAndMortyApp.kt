@@ -1,6 +1,9 @@
 package com.app.rickandmorty
 
 import android.app.Application
+import com.app.rickandmorty.di.dataModules
+import com.app.rickandmorty.di.domainModules
+import com.app.rickandmorty.di.presentationModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -10,6 +13,7 @@ class RickAndMortyApp : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@RickAndMortyApp)
+            modules(dataModules + domainModules + presentationModule)
         }
     }
 }
