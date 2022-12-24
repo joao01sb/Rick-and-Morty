@@ -21,11 +21,9 @@ class TelaInicialActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         supportActionBar?.hide()
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-        NavigationUI.setupActionBarWithNavController(this, navHostFragment.navController)
-//        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-//        val navController = navHostFragment.navController
         listiner()
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        navHostFragment.navController
     }
 
     fun listiner() {
@@ -50,6 +48,7 @@ class TelaInicialActivity : AppCompatActivity() {
 
     private fun replaceFragment(fragment: Fragment) {
         val managerFragment = supportFragmentManager.beginTransaction()
+        managerFragment.addToBackStack("voltar")
         managerFragment.replace(R.id.fragmentContainerView, fragment).commit()
     }
 

@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import com.app.rickandmorty.R
@@ -24,56 +26,44 @@ import org.koin.core.parameter.parametersOf
 
 class FragmentDetalhesPersonagem : Fragment() {
 
-    private val args: FragmentDetalhesPersonagemArgs by navArgs()
-    private var binding: FragmentDetalhesPersonagemBinding? = null
-    private val personagemViewModel: PersonagemViewModel by viewModel { parametersOf(args.personagem) }
-    private val crudPersonagem: PersonagemViewModel2 by viewModel()
+    private lateinit var binding: FragmentDetalhesPersonagemBinding
+    private val argumentos by navArgs<FragmentDetalhesPersonagemArgs>()
+    private val personagemEncontrado by lazy { argumentos.personagem }
+    private val viewModelPersonagem: PersonagemViewModel by viewModel { parametersOf(personagemEncontrado) }
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {}
-
+    private val controladorNav by lazy {
+        findNavController()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentDetalhesPersonagemBinding.inflate(inflater, container, false).apply {
-            nome.text = personagemViewModel.personagem?.name ?: ""
-            genero.text = personagemViewModel.personagem?.gender ?: ""
-            status.text = personagemViewModel.personagem?.status ?: ""
-            especie.text = personagemViewModel.personagem?.species ?: ""
-            origem.text = personagemViewModel.personagem?.origin?.name ?: ""
-            personagemViewModel.personagem?.image?.let { imagemPersonagem.pegarImagemDoPersonagem(it) }
-            salvarPersonagem?.setOnClickListener {
+
+        binding = FragmentDetalhesPersonagemBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.apply {
+            nome.text = viewModelPersonagem.personagem.name ?: ""
+            genero.text = viewModelPersonagem.personagem.gender ?: ""
+            status.text = viewModelPersonagem.personagem.status ?: ""
+            especie.text = viewModelPersonagem.personagem.species ?: ""
+            origem.text = viewModelPersonagem.personagem.origin?.name ?: ""
+            viewModelPersonagem.personagem.image?.let { imagemPersonagem.pegarImagemDoPersonagem(it) }
+            salvarPersonagem.setOnClickListener {
                 lifecycleScope.launch(Dispatchers.IO) {
-                    personagemViewModel.personagem?.let { it1 -> crudPersonagem.salvar(it1) }
+                    viewModelPersonagem.salvarPersonagemFavorito(personagemEncontrado)
                 }
             }
         }
-        context?.let {
-            sharedElementEnterTransition =
-                TransitionInflater.from(it).inflateTransition(android.R.transition.move)
-        }
-        return binding!!.root
+        voltarParaListaDePersonagens()
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FragmentDetalhesPersonagem.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragmentDetalhesPersonagem().apply {
-                arguments = Bundle().apply {}
-            }
+    private fun voltarParaListaDePersonagens() {
+        val direcao = FragmentDetalhesPersonagemDirections.actionDetalhesParaPersonagens()
+        controladorNav.navigate(direcao)
     }
 }

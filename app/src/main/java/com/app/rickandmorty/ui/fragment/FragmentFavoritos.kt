@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.app.rickandmorty.databinding.FragmentFavoritosBinding
 import com.app.rickandmorty.domain.viewModel.PersonagemViewModel2
 import com.app.rickandmorty.ui.adapter.AdapterPersonagensSalvos
@@ -18,6 +19,9 @@ class FragmentFavoritos : Fragment() {
 
     lateinit var binding: FragmentFavoritosBinding
     private val personagemViewModel: PersonagemViewModel2 by viewModel()
+    private val controladorNav by lazy {
+        findNavController()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
