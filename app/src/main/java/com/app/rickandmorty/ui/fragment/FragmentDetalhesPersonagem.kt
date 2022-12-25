@@ -47,8 +47,14 @@ class FragmentDetalhesPersonagem : Fragment() {
             origem.text = personagemViewModel.personagem?.origin?.name ?: ""
             personagemViewModel.personagem?.image?.let { imagemPersonagem.pegarImagemDoPersonagem(it) }
             salvarPersonagem.setOnClickListener {
-                lifecycleScope.launch(Dispatchers.IO) {
-                    personagemViewModel.salvarPersonagem(args.personagem)
+                try {
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        personagemViewModel.salvarPersonagem(args.personagem)
+                    }
+                    Toast.makeText(requireContext(), "Personagem Salvo com sucesso!", Toast.LENGTH_SHORT)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    Toast.makeText(requireContext(), "Personagem já esta salvo!", Toast.LENGTH_SHORT)
                 }
             }
         }

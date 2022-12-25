@@ -14,8 +14,8 @@ android {
         applicationId "com.app.rickandmorty"
         minSdk 25
         targetSdk 31
-        versionCode 101
-        versionName "1.0.1"
+        versionCode 1
+        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

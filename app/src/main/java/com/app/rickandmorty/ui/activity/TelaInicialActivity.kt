@@ -34,18 +34,9 @@ class TelaInicialActivity : AppCompatActivity() {
     fun listiner() {
         binding.navigationBar.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.fragment_personagens -> {
-                    controle.navigate(FragmentDetalhesPersonagemDirections.actionFragmentDetalhesPersonagemToFragmentPersonagens())
-                }
-                R.id.fragmentFavoritos -> {
-                    controle.navigate(R.id.fragmentFavoritos)
-                }
-//                R.id.pesquisar -> {
-//
-//                }
-                else -> {
-                    TODO()
-                }
+                R.id.fragment_personagens -> controle.navigate(R.id.fragment_personagens)
+                R.id.fragmentFavoritos -> controle.navigate(R.id.fragmentFavoritos)
+                R.id.sobre -> controle.navigate(R.id.fragment_sobre)
             }
             return@setOnItemSelectedListener true
         }
