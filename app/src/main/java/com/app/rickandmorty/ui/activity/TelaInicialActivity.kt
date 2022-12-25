@@ -28,8 +28,6 @@ class TelaInicialActivity : AppCompatActivity() {
         supportActionBar?.hide()
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         NavigationUI.setupActionBarWithNavController(this, navHostFragment.navController)
-//        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-//        val navController = navHostFragment.navController
         listiner()
     }
 
@@ -39,9 +37,9 @@ class TelaInicialActivity : AppCompatActivity() {
                 R.id.fragment_personagens -> {
                     controle.navigate(FragmentDetalhesPersonagemDirections.actionFragmentDetalhesPersonagemToFragmentPersonagens())
                 }
-//                R.id.favoritos -> {
-//                    replaceFragment(FragmentFavoritos())
-//                }
+                R.id.fragmentFavoritos -> {
+                    controle.navigate(R.id.fragmentFavoritos)
+                }
 //                R.id.pesquisar -> {
 //
 //                }

@@ -12,7 +12,7 @@ import com.app.rickandmorty.models.Personagem
 
 class AdapterPersonagensSalvos(
     val listaDePersonagem: List<Personagem>? = null,
-//    private val PersonagemClick: (Personagem, Navigator.Extras) -> Unit
+    var onItemClickListener: (personagem: Personagem) -> Unit = {}
 ) : RecyclerView.Adapter<AdapterPersonagensSalvos.ViewHolder>() {
 
 
@@ -22,13 +22,9 @@ class AdapterPersonagensSalvos(
         fun vincularPersonagemComDados(personagem: Personagem) {
             personagem.image?.let { binding.imagemPersonagemBanco.pegarImagemDoPersonagem(it) }
             binding.nomePersonagemBanco.text = personagem.name
-//            binding.root.setOnClickListener {
-//                val extras = FragmentNavigator.Extras.Builder()
-//                extras.addSharedElement(binding.imagemPersonagemBanco, "avatar")
-//                personagem?.let{
-//                    PersonagemClick(personagem!!,extras.build())
-//                }
-//            }
+            binding.root.setOnClickListener {
+                onItemClickListener(personagem)
+            }
         }
     }
 
