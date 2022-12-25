@@ -12,7 +12,7 @@ import com.app.rickandmorty.extras.pegarImagemDoPersonagem
 import com.app.rickandmorty.models.Personagem
 
 class AdapterPersonagens(
-    private val PersonagemClick: (Personagem, Navigator.Extras) -> Unit
+    var onItemClickListener: (personagem: Personagem) -> Unit = {}
 ) : PagingDataAdapter<Personagem, AdapterPersonagens.ViewHolder>(PersonagemDiff) {
 
     object PersonagemDiff : DiffUtil.ItemCallback<Personagem>() {
@@ -26,19 +26,16 @@ class AdapterPersonagens(
     inner class ViewHolder(
         private val binding: CardPersonagemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
+
         fun vincularPersonagemComDados(position: Int) {
-            var personagem = getItem(position)
+            val personagem = getItem(position)
             if (personagem != null) {
                 binding.apply {
-                    personagem!!.image?.let { imagemPersonagemBanco.pegarImagemDoPersonagem(it) }
-                    nomePersonagemBanco.text = personagem!!.name
-                    statusCard.text = personagem!!.status
+                    personagem.image?.let { imagemPersonagemBanco.pegarImagemDoPersonagem(it) }
+                    nomePersonagemBanco.text = personagem.name
+                    statusCard.text = personagem.status
                     binding.root.setOnClickListener {
-                        val extras = FragmentNavigator.Extras.Builder()
-                        extras.addSharedElement(binding.imagemPersonagemBanco, "avatar")
-                        personagem?.let{
-                            PersonagemClick(personagem!!,extras.build())
-                        }
+                        onItemClickListener(personagem)
                     }
                 }
             }

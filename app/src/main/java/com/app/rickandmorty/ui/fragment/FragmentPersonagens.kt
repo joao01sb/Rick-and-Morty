@@ -5,9 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.app.rickandmorty.R
 import com.app.rickandmorty.databinding.FragmentDetalhesPersonagemBinding
 import com.app.rickandmorty.databinding.FragmentPersonagensBinding
@@ -20,56 +23,58 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-
-
 class FragmentPersonagens : Fragment() {
 
     lateinit var binding: FragmentPersonagensBinding
+    private val controleNav by lazy { findNavController() }
     private val personagensViewModel: ListaDePersonagensViewModel by viewModel()
-    private val adapter = AdapterPersonagens {personagem, extras ->
-        var acao = FragmentPersonagensDirections.actionFragmentPersonagensToFragmentDetalhesPersonagem(personagem)
-        view?.let { it ->
-            Navigation.findNavController(it).let {
-                if (it.currentDestination?.id == R.id.fragment_personagens)
-                    it.navigate(acao, extras)
-            }
-        }
-    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {}
-    }
+    //    private val adapter = AdapterPersonagens {personagem, extras ->
+//        var acao = FragmentPersonagensDirections.actionFragmentPersonagensToFragmentDetalhesPersonagem(personagem)
+//        view?.let { it ->
+//            Navigation.findNavController(it).let {
+//                if (it.currentDestination?.id == R.id.fragment_personagens)
+//                    it.navigate(acao, extras)
+//            }
+//        }
+//    }
+    private val adapter = AdapterPersonagens()
+    private var searchJob: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-       binding = FragmentPersonagensBinding.inflate(inflater, container, false)
-        binding.listaPersonagens.adapter = adapter
-        search()
+    ): View {
+        binding = FragmentPersonagensBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragmentPersonagens().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        search()
+        configuraRecyclerView()
     }
 
-    private var searchJob: Job? = null
-
     private fun search() {
-
         searchJob?.cancel()
         searchJob = lifecycleScope.launch {
             personagensViewModel.fetchCharacters().collectLatest {
                 adapter.submitData(it)
             }
         }
+    }
+
+    private fun configuraRecyclerView() {
+        val divisor = DividerItemDecoration(context, LinearLayout.VERTICAL)
+        binding.listaPersonagens.addItemDecoration(divisor)
+        adapter.onItemClickListener = { personagemSelecionado ->
+            detalhesPersonagem(personagemSelecionado)
+        }
+        binding.listaPersonagens.adapter = adapter
+    }
+
+    private fun detalhesPersonagem(personagem: Personagem) {
+        val direcao = FragmentPersonagensDirections.actionFragmentPersonagensToFragmentDetalhesPersonagem(personagem)
+        controleNav.navigate(direcao)
     }
 }

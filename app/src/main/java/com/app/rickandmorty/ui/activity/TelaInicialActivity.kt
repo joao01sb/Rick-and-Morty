@@ -3,18 +3,22 @@ package com.app.rickandmorty.ui.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.app.rickandmorty.R
 import com.app.rickandmorty.databinding.ActivityTelaInicialBinding
-import com.app.rickandmorty.ui.fragment.FragmentFavoritos
-import com.app.rickandmorty.ui.fragment.FragmentPersonagens
+import com.app.rickandmorty.ui.fragment.*
 
 
 class TelaInicialActivity : AppCompatActivity() {
 
     private val binding by lazy {
         ActivityTelaInicialBinding.inflate(layoutInflater)
+    }
+
+    private val controle by lazy {
+        findNavController(R.id.fragmentContainerView)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,12 +35,12 @@ class TelaInicialActivity : AppCompatActivity() {
     fun listiner() {
         binding.navigationBar.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.inicio -> {
-                    replaceFragment(FragmentPersonagens())
+                R.id.fragment_personagens -> {
+                    controle.navigate(FragmentDetalhesPersonagemDirections.actionFragmentDetalhesPersonagemToFragmentPersonagens())
                 }
-                R.id.favoritos -> {
-                    replaceFragment(FragmentFavoritos())
-                }
+//                R.id.favoritos -> {
+//                    replaceFragment(FragmentFavoritos())
+//                }
 //                R.id.pesquisar -> {
 //
 //                }
@@ -46,11 +50,6 @@ class TelaInicialActivity : AppCompatActivity() {
             }
             return@setOnItemSelectedListener true
         }
-    }
-
-    private fun replaceFragment(fragment: Fragment) {
-        val managerFragment = supportFragmentManager.beginTransaction()
-        managerFragment.replace(R.id.fragmentContainerView, fragment).commit()
     }
 
 }

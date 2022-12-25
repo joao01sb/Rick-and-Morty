@@ -24,17 +24,6 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
-
-
-//val appDados = module {
-//
-//    single<PersonagensRepository1> {
-//        PersonagensRepository1(get())
-//    }
-//    viewModel { ListaDePersonagensViewModel(get(), get()) }
-//}
-
 val connection = module {
     factory { provideOkHttpClient() }
 
@@ -87,13 +76,9 @@ val presentationModule = module {
 
     factory { CharacterPagingSource(get())  }
 
-    viewModel {
-        ListaDePersonagensViewModel(get(), get(), get())
-    }
-    viewModel {
-        PersonagemViewModel2(get())
-    }
-    viewModel { (c: Personagem) -> PersonagemViewModel(c) }
+    viewModel { ListaDePersonagensViewModel(get(), get(), get()) }
+    viewModel { PersonagemViewModel2(get()) }
+    viewModel { (p: Personagem) -> PersonagemViewModel(p, get()) }
 
 }
 

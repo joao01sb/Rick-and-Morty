@@ -25,7 +25,9 @@
             app:argType="com.app.rickandmorty.models.Personagem" />
         <action
             android:id="@+id/action_fragmentDetalhesPersonagem_to_fragment_personagens"
-            app:destination="@id/fragment_personagens" />
+            app:destination="@id/fragment_personagens"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/fragment_personagens" />
     </fragment>
 
     <fragment
