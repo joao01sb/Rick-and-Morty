@@ -21,6 +21,7 @@ class TelaInicialActivity : AppCompatActivity() {
         findNavController(R.id.fragmentContainerView)
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
