@@ -2,6 +2,8 @@ package com.app.rickandmorty.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigator
+import androidx.navigation.fragment.FragmentNavigator
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -26,9 +28,7 @@ class AdapterPersonagens(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun vincularPersonagemComDados(position: Int) {
-
             val personagem = getItem(position)
-
             if (personagem != null) {
                 binding.apply {
                     personagem.image?.let { imagemPersonagemBanco.pegarImagemDoPersonagem(it) }
@@ -41,6 +41,7 @@ class AdapterPersonagens(
             }
         }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(CardPersonagemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 

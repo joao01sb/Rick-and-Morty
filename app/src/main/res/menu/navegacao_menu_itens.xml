@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/inicio"
+        android:id="@+id/fragment_personagens"
         android:enabled="true"
         android:icon="@drawable/ic_home"
         android:title="Inicio"/>
 
     <item
-        android:id="@+id/favoritos"
+        android:id="@+id/fragmentFavoritos"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_storage_24"
         android:title="Favoritos"/>

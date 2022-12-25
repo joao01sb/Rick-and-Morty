@@ -15,7 +15,6 @@ import com.app.rickandmorty.domain.viewModel.ListaDePersonagensViewModel
 import com.app.rickandmorty.domain.viewModel.PersonagemViewModel
 import com.app.rickandmorty.domain.viewModel.PersonagemViewModel2
 import com.app.rickandmorty.models.Personagem
-import com.app.rickandmorty.ui.adapter.AdapterPersonagens
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -24,7 +23,6 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
 
 val connection = module {
     factory { provideOkHttpClient() }
@@ -78,16 +76,11 @@ val presentationModule = module {
 
     factory { CharacterPagingSource(get())  }
 
-    viewModel {
-        ListaDePersonagensViewModel(get(), get(), get())
-    }
-    viewModel {
-        PersonagemViewModel2(get())
-    }
-    viewModel { (c: Personagem) -> PersonagemViewModel(c, get()) }
+    viewModel { ListaDePersonagensViewModel(get(), get(), get()) }
+    viewModel { PersonagemViewModel2(get()) }
+    viewModel { (p: Personagem) -> PersonagemViewModel(p, get()) }
 
 }
-
 
 val presentationModules = listOf(presentationModule)
 

@@ -1,10 +1,7 @@
 package com.app.rickandmorty.domain.viewModel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.app.rickandmorty.data.dao.PersonagemDAO
-import com.app.rickandmorty.domain.repository.PersonagemBanco
-import com.app.rickandmorty.domain.repository.PersonagemRepository
 import com.app.rickandmorty.models.Personagem
 
 class PersonagemViewModel(
@@ -12,7 +9,7 @@ class PersonagemViewModel(
     val repository: PersonagemDAO
 ) : ViewModel() {
 
-    fun salvarPersonagemFavorito(personagem: Personagem) {
+    suspend fun salvarPersonagem(personagem: Personagem) {
         repository.salvarPersonagem(personagem)
     }
 

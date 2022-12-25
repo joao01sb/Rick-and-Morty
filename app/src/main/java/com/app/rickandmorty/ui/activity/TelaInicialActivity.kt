@@ -3,12 +3,12 @@ package com.app.rickandmorty.ui.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.app.rickandmorty.R
 import com.app.rickandmorty.databinding.ActivityTelaInicialBinding
-import com.app.rickandmorty.ui.fragment.FragmentFavoritos
-import com.app.rickandmorty.ui.fragment.FragmentPersonagens
+import com.app.rickandmorty.ui.fragment.*
 
 
 class TelaInicialActivity : AppCompatActivity() {
@@ -17,24 +17,30 @@ class TelaInicialActivity : AppCompatActivity() {
         ActivityTelaInicialBinding.inflate(layoutInflater)
     }
 
+    private val controle by lazy {
+        findNavController(R.id.fragmentContainerView)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         supportActionBar?.hide()
-        listiner()
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-        navHostFragment.navController
+        NavigationUI.setupActionBarWithNavController(this, navHostFragment.navController)
+//        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+//        val navController = navHostFragment.navController
+        listiner()
     }
 
     fun listiner() {
         binding.navigationBar.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.inicio -> {
-                    replaceFragment(FragmentPersonagens())
+                R.id.fragment_personagens -> {
+                    controle.navigate(FragmentDetalhesPersonagemDirections.actionFragmentDetalhesPersonagemToFragmentPersonagens())
                 }
-                R.id.favoritos -> {
-                    replaceFragment(FragmentFavoritos())
-                }
+//                R.id.favoritos -> {
+//                    replaceFragment(FragmentFavoritos())
+//                }
 //                R.id.pesquisar -> {
 //
 //                }
@@ -44,12 +50,6 @@ class TelaInicialActivity : AppCompatActivity() {
             }
             return@setOnItemSelectedListener true
         }
-    }
-
-    private fun replaceFragment(fragment: Fragment) {
-        val managerFragment = supportFragmentManager.beginTransaction()
-        managerFragment.addToBackStack("voltar")
-        managerFragment.replace(R.id.fragmentContainerView, fragment).commit()
     }
 
 }
