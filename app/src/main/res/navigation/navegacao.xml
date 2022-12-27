@@ -38,7 +38,7 @@
         <action
             android:id="@+id/action_fragmentFavoritos_to_fragmentDetalhesPersonagem"
             app:destination="@id/fragmentDetalhesPersonagem"
-            app:enterAnim="@android:anim/bounce_interpolator" />
+            app:enterAnim="@anim/nav_default_enter_anim" />
         <action
             android:id="@+id/action_fragmentFavoritos_to_fragment_personagens"
             app:destination="@id/fragment_personagens"
