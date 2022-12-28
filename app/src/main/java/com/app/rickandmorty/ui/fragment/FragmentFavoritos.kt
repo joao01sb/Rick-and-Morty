@@ -8,18 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.app.rickandmorty.databinding.FragmentFavoritosBinding
-import com.app.rickandmorty.domain.viewModel.PersonagemViewModel2
 import com.app.rickandmorty.models.Personagem
 import com.app.rickandmorty.ui.adapter.AdapterPersonagensSalvos
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FragmentFavoritos : Fragment() {
 
     lateinit var binding: FragmentFavoritosBinding
-    private val personagemViewModel: PersonagemViewModel2 by viewModel()
     private val controladorNav by lazy {
         findNavController()
     }

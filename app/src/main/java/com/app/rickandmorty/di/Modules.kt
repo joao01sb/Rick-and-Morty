@@ -10,15 +10,12 @@ import com.app.rickandmorty.domain.CoroutineContext
 import com.app.rickandmorty.domain.repository.GetPersonagemByPag
 import com.app.rickandmorty.domain.repository.PersonagemBanco
 import com.app.rickandmorty.domain.repository.PersonagemRepository
-import com.app.rickandmorty.domain.repository.PersonagensRepository1
 import com.app.rickandmorty.domain.viewModel.ListaDePersonagensViewModel
 import com.app.rickandmorty.domain.viewModel.PersonagemViewModel
-import com.app.rickandmorty.domain.viewModel.PersonagemViewModel2
 import com.app.rickandmorty.models.Personagem
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.core.scope.get
 import org.koin.dsl.bind
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -77,7 +74,6 @@ val presentationModule = module {
     factory { CharacterPagingSource(get())  }
 
     viewModel { ListaDePersonagensViewModel(get(), get(), get()) }
-    viewModel { PersonagemViewModel2(get()) }
     viewModel { (p: Personagem) -> PersonagemViewModel(p, get()) }
 
 }

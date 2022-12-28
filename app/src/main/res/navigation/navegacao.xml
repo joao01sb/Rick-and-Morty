@@ -55,6 +55,8 @@
         tools:layout="@layout/fragment_sobre">
         <action
             android:id="@+id/action_placeholder_to_fragment_personagens"
-            app:destination="@id/fragment_personagens" />
+            app:destination="@id/fragment_personagens"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/fragment_personagens" />
     </fragment>
 </navigation>

@@ -12,7 +12,7 @@ import com.app.rickandmorty.models.Personagem
 interface PersonagemDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-     fun salvarPersonagem(vararg personagem: Personagem)
+     suspend fun salvarPersonagem(vararg personagem: Personagem)
 
     @Query("select * from Personagem")
      fun personagensFavoritos() : List<Personagem>

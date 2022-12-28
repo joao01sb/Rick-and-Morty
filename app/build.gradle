@@ -72,7 +72,6 @@ dependencies {
 
     //database room
     implementation "androidx.room:room-runtime:$room_version"
-//    annotationProcessor "androidx.room:room-compiler:$room_version" // isso e um anotacion process cria codigos apartir das anotacoes nos codigos porem dessa forma e em java e kotlin abaixo
     kapt "androidx.room:room-compiler:$room_version"
 
     implementation 'androidx.core:core-ktx:1.7.0'
