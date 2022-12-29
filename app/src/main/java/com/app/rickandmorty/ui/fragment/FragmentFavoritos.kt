@@ -8,11 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.app.rickandmorty.databinding.FragmentFavoritosBinding
+import com.app.rickandmorty.domain.viewModel.PersonagensViewModel
 import com.app.rickandmorty.models.Personagem
 import com.app.rickandmorty.ui.adapter.AdapterPersonagensSalvos
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FragmentFavoritos : Fragment() {
 
@@ -20,6 +22,7 @@ class FragmentFavoritos : Fragment() {
     private val controladorNav by lazy {
         findNavController()
     }
+    private val personagensViewModel: PersonagensViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +35,7 @@ class FragmentFavoritos : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launch(Dispatchers.IO) {
-            val adapter = AdapterPersonagensSalvos(personagemViewModel.buscarPersonagensSalvos())
+            val adapter = AdapterPersonagensSalvos(personagensViewModel.buscarPersonagensFavoritos())
             withContext(Dispatchers.Main) {
                 binding.personagensSalvos.adapter = adapter
             }

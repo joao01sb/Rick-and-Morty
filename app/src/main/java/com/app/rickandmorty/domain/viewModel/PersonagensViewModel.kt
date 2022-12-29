@@ -1,32 +1,28 @@
 package com.app.rickandmorty.domain.viewModel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.app.rickandmorty.domain.CharacterPagingSource
+import com.app.rickandmorty.domain.PersonagemPagProcura
 import com.app.rickandmorty.domain.CoroutineContext
-import com.app.rickandmorty.domain.repository.GetPersonagemByPag
-import com.app.rickandmorty.domain.repository.PersonagensRepository1
+import com.app.rickandmorty.domain.repository.BuscarPersonagemPorPag
+import com.app.rickandmorty.domain.repository.PersonagemRepository
 import com.app.rickandmorty.models.Personagem
 import kotlinx.coroutines.flow.Flow
 
-class ListaDePersonagensViewModel(
+class PersonagensViewModel(
     private val coroutineContext: CoroutineContext,
-    private val getPersonagemByPag: GetPersonagemByPag,
-    private val source: CharacterPagingSource
+    private val buscarPersonagemPorPag: BuscarPersonagemPorPag,
+    private val source: PersonagemPagProcura,
+    private val repository: PersonagemRepository
 ) : ViewModel() {
 
-//    suspend fun buscarPersonagens(pag: Int) : LiveData<List<Personagem>> {
-//        return repository.buscarPagina(pag)
-//    }
-//
-//    suspend fun buscarPersonagem(nome: String) : Personagem? {
-//        return repository.buscarPersonagem(nome)
-//    }
+    suspend fun buscarPersonagensFavoritos() : List<Personagem> = repository.buscarPersonagens()
+
+    suspend fun getPersonagensPorPag(pag: Int) = repository.getPersonagemPorPag(pag)
 
     fun fetchCharacters(): Flow<PagingData<Personagem>> {
         val newResult: Flow<PagingData<Personagem>> =

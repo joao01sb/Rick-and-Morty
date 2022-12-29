@@ -6,15 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
-import com.app.rickandmorty.R
-import com.app.rickandmorty.databinding.FragmentDetalhesPersonagemBinding
 import com.app.rickandmorty.databinding.FragmentPersonagensBinding
-import com.app.rickandmorty.domain.viewModel.ListaDePersonagensViewModel
+import com.app.rickandmorty.domain.viewModel.PersonagensViewModel
 import com.app.rickandmorty.models.Personagem
 import com.app.rickandmorty.ui.adapter.AdapterPersonagens
 import kotlinx.coroutines.Job
@@ -27,7 +23,7 @@ class FragmentPersonagens : Fragment() {
 
     lateinit var binding: FragmentPersonagensBinding
     private val controleNav by lazy { findNavController() }
-    private val personagensViewModel: ListaDePersonagensViewModel by viewModel()
+    private val personagensViewModel: PersonagensViewModel by viewModel()
 
     //    private val adapter = AdapterPersonagens {personagem, extras ->
 //        var acao = FragmentPersonagensDirections.actionFragmentPersonagensToFragmentDetalhesPersonagem(personagem)

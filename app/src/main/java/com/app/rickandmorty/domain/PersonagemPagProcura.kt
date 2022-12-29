@@ -2,11 +2,11 @@ package com.app.rickandmorty.domain
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.app.rickandmorty.domain.repository.GetPersonagemByPag
+import com.app.rickandmorty.domain.repository.BuscarPersonagemPorPag
 import com.app.rickandmorty.models.Personagem
 
-class CharacterPagingSource(
-    val getCharacters: GetPersonagemByPag,
+class PersonagemPagProcura(
+    val getCharacters: BuscarPersonagemPorPag,
 ) : PagingSource<Int, Personagem>() {
     override suspend fun load(
         params: LoadParams<Int>
