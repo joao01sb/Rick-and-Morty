@@ -48,6 +48,7 @@ dependencies {
     def koin_android_version= "3.3.1"
     def nav_version = "2.5.3"
     def paging_version = "3.1.1"
+    def ktorVersion = "2.2.1"
 
     //paging adapter
     implementation "androidx.paging:paging-runtime:$paging_version"
@@ -83,6 +84,9 @@ dependencies {
 
     //koin
     implementation "io.insert-koin:koin-android:$koin_android_version"
+
+    //ktor
+    implementation "io.ktor:ktor-client-okhttp:$ktorVersion"
 
     //lifecycle
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
