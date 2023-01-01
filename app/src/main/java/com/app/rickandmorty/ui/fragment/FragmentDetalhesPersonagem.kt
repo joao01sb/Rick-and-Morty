@@ -13,6 +13,7 @@ import com.app.rickandmorty.domain.viewModel.PersonagemViewModel
 import com.app.rickandmorty.extras.pegarImagemDoPersonagem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -43,8 +44,14 @@ class FragmentDetalhesPersonagem : Fragment() {
                 try {
                     lifecycleScope.launch(Dispatchers.IO) {
                         personagemViewModel.salvarPersonagem(args.personagem)
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(
+                                requireContext(),
+                                "Personagem Salvo com sucesso!",
+                                Toast.LENGTH_SHORT
+                            )
+                        }
                     }
-                    Toast.makeText(requireContext(), "Personagem Salvo com sucesso!", Toast.LENGTH_SHORT)
                 } catch (e: Exception) {
                     e.printStackTrace()
                     Toast.makeText(requireContext(), "Personagem já esta salvo!", Toast.LENGTH_SHORT)
