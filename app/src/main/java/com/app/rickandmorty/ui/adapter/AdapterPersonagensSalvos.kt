@@ -22,6 +22,8 @@ class AdapterPersonagensSalvos(
         fun vincularPersonagemComDados(personagem: Personagem) {
             personagem.image?.let { binding.imagemPersonagemBanco.pegarImagemDoPersonagem(it) }
             binding.nomePersonagemBanco.text = personagem.name
+            binding.localizacaoPersonagemBanco.text = personagem.location.name
+            binding.statusPersonagemBanco.text = personagem.status
             binding.root.setOnClickListener {
                 onItemClickListener(personagem)
             }

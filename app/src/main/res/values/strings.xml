@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Rick and Morty</string>
+    <string name="nome_personagem">Rick Sanchez</string>
+    <string name="isAlive">Dead - Humanoid</string>
 </resources>
