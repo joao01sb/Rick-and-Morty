@@ -58,5 +58,30 @@
             app:destination="@id/fragment_personagens"
             app:launchSingleTop="true"
             app:popUpTo="@id/fragment_personagens" />
+        <action
+            android:id="@+id/action_fragment_sobre_to_fragmentLogin"
+            app:destination="@id/fragmentLogin"
+            app:popUpTo="@id/fragmentLogin" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentLogin"
+        android:name="com.app.rickandmorty.ui.fragment.FragmentLogin"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragment_personagens"
+            app:destination="@id/fragment_personagens" />
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentCadastro"
+            app:destination="@id/fragmentCadastro" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentCadastro"
+        android:name="com.app.rickandmorty.ui.fragment.FragmentCadastro"
+        android:label="fragment_cadastro"
+        tools:layout="@layout/fragment_cadastro" >
+        <action
+            android:id="@+id/action_fragmentCadastro_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
     </fragment>
 </navigation>

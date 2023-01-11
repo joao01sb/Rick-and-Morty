@@ -21,12 +21,10 @@ class AdapterPersonagensSalvos(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun vincularPersonagemComDados(personagem: Personagem) {
             personagem.image?.let { binding.imagemPersonagemBanco.pegarImagemDoPersonagem(it) }
-            binding.nomePersonagemBanco.text = personagem.name
-            binding.localizacaoPersonagemBanco.text = personagem.location.name
-            binding.statusPersonagemBanco.text = personagem.status
-            binding.root.setOnClickListener {
-                onItemClickListener(personagem)
-            }
+            personagem.name?.let { binding.nomePersonagemBanco.text = personagem.name }
+            personagem.location?.let { binding.localizacaoPersonagemBanco.text = personagem.location.name }
+            personagem.status?.let { binding.statusPersonagemBanco.text = personagem.status }
+            binding.root.setOnClickListener { onItemClickListener(personagem) }
         }
     }
 
