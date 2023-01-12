@@ -9,11 +9,13 @@ import androidx.navigation.fragment.findNavController
 import com.app.rickandmorty.R
 import com.app.rickandmorty.databinding.FragmentFavoritosBinding
 import com.app.rickandmorty.databinding.FragmentLoginBinding
+import com.firebase.ui.auth.AuthUI
 
 class FragmentLogin : Fragment() {
 
     lateinit var binding: FragmentLoginBinding
     private val controler by lazy { findNavController() }
+    private val RC_SIGN_IN = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +29,14 @@ class FragmentLogin : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.loginBotaoLogar.setOnClickListener { irParaPersonagens() }
         binding.loginBotaoCadastrarUsuario.setOnClickListener { irParaCadastro() }
+        // pego a instancia do firebaseUI
+        val authUi = AuthUI.getInstance()
+        //intent responsavel por abrir as telas do fluxo do fireUI
+        val intent = authUi.createSignInIntentBuilder()
+            .setAvailableProviders(listOf(AuthUI.IdpConfig.EmailBuilder().build()))
+            .build()
+        // para lidar com o retorno da activiy aberta
+        startActivityForResult(intent, RC_SIGN_IN)
     }
 
     fun irParaPersonagens() {

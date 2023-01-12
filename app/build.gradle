@@ -55,6 +55,10 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:31.1.1')
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
+    // firebaseUI
+    implementation 'com.firebaseui:firebase-ui-auth:8.0.2'
+
+
     //paging adapter
     implementation "androidx.paging:paging-runtime:$paging_version"
 
