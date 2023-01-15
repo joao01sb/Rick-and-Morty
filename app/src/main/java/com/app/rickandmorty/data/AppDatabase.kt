@@ -6,14 +6,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.app.rickandmorty.data.converts.Convertes
-import com.app.rickandmorty.data.dao.PersonagemDAO
-import com.app.rickandmorty.models.Personagem
+import com.app.rickandmorty.data.dao.CharcterDAO
+import com.app.rickandmorty.models.Character
 
-@Database(entities = [Personagem::class], version = 1, exportSchema = true)
+@Database(entities = [Character::class], version = 1, exportSchema = true)
 @TypeConverters(Convertes::class)
 abstract class AppDataBase : RoomDatabase() {
 
-    abstract fun PersonagemAcoes(): PersonagemDAO
+    abstract fun charactersActionData(): CharcterDAO
 
     companion object {
         fun instancia(context: Context): AppDataBase = Room.databaseBuilder(

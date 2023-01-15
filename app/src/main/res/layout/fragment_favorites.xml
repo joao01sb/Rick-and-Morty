@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.FragmentFavoritos">
+    tools:context=".ui.fragment.FragmentFavorites">
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/card_personagem_banco" />
+        tools:listitem="@layout/card_character_data" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

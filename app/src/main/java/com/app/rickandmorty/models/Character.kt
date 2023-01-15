@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @Entity
-data class Personagem(
+data class Character(
     @PrimaryKey
     val id: Int,
     val name: String?,

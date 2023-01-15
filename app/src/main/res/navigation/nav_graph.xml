@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragment_characters">
+
+    <fragment
+        android:id="@+id/fragment_characters"
+        android:name="com.app.rickandmorty.ui.fragment.FragmentCharacters"
+        android:label="fragment_characters"
+        tools:layout="@layout/fragment_characters" >
+        <action
+            android:id="@+id/action_characters_for_character_details"
+            app:destination="@id/fragment_details_character" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_details_character"
+        android:name="com.app.rickandmorty.ui.fragment.FragmentDetailsCharacter"
+        android:label="fragment_details_character"
+        tools:layout="@layout/fragment_details_character" >
+        <argument
+            android:name="personagem"
+            app:argType="com.app.rickandmorty.models.Character" />
+        <action
+            android:id="@+id/action_character_details_for_characters"
+            app:destination="@id/fragment_characters"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/fragment_characters" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_favorites"
+        android:name="com.app.rickandmorty.ui.fragment.FragmentFavorites"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_favorites_for_details_character"
+            app:destination="@id/fragment_details_character"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_fragmentFavoritos_to_fragment_personagens"
+            app:destination="@id/fragment_characters"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/fragment_characters" />
+    </fragment>
+
+    <fragment android:id="@+id/fragment_about"
+        android:name="com.app.rickandmorty.ui.fragment.FragmentAbout"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about"/>
+
+</navigation>

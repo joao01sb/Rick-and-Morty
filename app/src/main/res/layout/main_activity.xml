@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/navigation_bar"
-        app:navGraph="@navigation/navegacao"/>
+        app:navGraph="@navigation/nav_graph"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation_bar"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/navegacao_menu_itens"/>
+        app:menu="@menu/nav_menu_itens"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

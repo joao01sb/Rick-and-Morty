@@ -1,6 +1,6 @@
 package com.app.rickandmorty.connection
 
-import com.app.rickandmorty.models.Personagem
+import com.app.rickandmorty.models.Character
 import com.app.rickandmorty.models.RespList
 import retrofit2.Response
 import retrofit2.http.GET
@@ -12,11 +12,9 @@ interface RickApi {
 
     @Headers("Content-Type: application/json; charset=UTF-8", "Accept: application/json")
     @GET
-    suspend fun buscarPersonagem(@Url url: String): Response<Personagem?>
+    suspend fun searchCharacter(@Url url: String): Response<Character?>
 
     @Headers("Content-Type: application/json; charset=UTF-8", "Accept: application/json")
     @GET("character")
-    suspend fun buscarPersonagem1(
-        @Query("page") page: Int? = null
-    ): RespList<Personagem>
+    suspend fun searchCharactersByPag(@Query("page") page: Int? = null): RespList<Character>
 }
