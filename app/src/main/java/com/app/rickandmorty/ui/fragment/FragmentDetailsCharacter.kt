@@ -33,23 +33,31 @@ class FragmentDetailsCharacter : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        bindDetailsCharacter()
+    }
+
+    private fun bindDetailsCharacter() {
         binding.apply {
-            nome.text = characterViewModel.character.name ?: ""
-            genero.text = characterViewModel.character.gender ?: ""
-            status.text = characterViewModel.character.status ?: ""
-            especie.text = characterViewModel.character.species ?: ""
-            origem.text = characterViewModel.character.origin?.name ?: ""
-            characterViewModel.character.image?.let { imagemPersonagem.loadImage(it) }
-            salvarPersonagem.setOnClickListener {
+            nameCharacter.text = characterViewModel.character.name ?: ""
+            genderCharacter.text = characterViewModel.character.gender ?: ""
+            statusCharacter.text = characterViewModel.character.status ?: ""
+            specieCharacter.text = characterViewModel.character.species ?: ""
+            originCharacter.text = characterViewModel.character.origin?.name ?: ""
+            characterViewModel.character.image?.let { imageCharacter.loadImage(it) }
+            saveCharacter.setOnClickListener {
                 try {
                     lifecycleScope.launch(Dispatchers.IO) {
-                        characterViewModel.saveCharacter(args.personagem)
-                        withContext(Dispatchers.Main) {
-                            Toast.makeText(
-                                requireContext(),
-                                "Save Character Sucess!",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                        try {
+                            characterViewModel.saveCharacter(args.personagem)
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Save Character Sucess!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        } catch (e: Exception) {
+                            e.printStackTrace()
                         }
                     }
                 } catch (e: Exception) {
@@ -58,8 +66,11 @@ class FragmentDetailsCharacter : Fragment() {
                         "Character are save!",
                         Toast.LENGTH_SHORT
                     ).show()
+                    e.printStackTrace()
                 }
             }
         }
     }
+
+
 }

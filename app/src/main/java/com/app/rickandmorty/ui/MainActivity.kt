@@ -30,9 +30,9 @@ class MainActivity : AppCompatActivity() {
     private fun actionListiner() {
         binding.navigationBar.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.fragment_personagens -> navController.navigate(R.id.fragment_personagens)
-                R.id.fragmentFavoritos -> navController.navigate(R.id.fragmentFavoritos)
-                R.id.sobre -> navController.navigate(R.id.fragment_sobre)
+                R.id.fragment_characters -> navController.navigate(R.id.fragment_characters)
+                R.id.fragment_favorites -> navController.navigate(R.id.fragment_favorites)
+                R.id.fragment_about -> navController.navigate(R.id.fragment_about)
             }
             return@setOnItemSelectedListener true
         }

@@ -24,7 +24,7 @@ class FragmentCharacters : Fragment() {
     private lateinit var binding: FragmentCharactersBinding
     private val navController by lazy { findNavController() }
     private val charactersViewModel: CharactersViewModel by viewModel()
-    private lateinit var adapter: AdapterCharacters
+    private val adapter = AdapterCharacters()
     private var searchJob: Job? = null
 
     override fun onCreateView(
@@ -37,8 +37,8 @@ class FragmentCharacters : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        search()
         configRecyclerView()
+        search()
     }
 
     private fun search() {
@@ -52,13 +52,13 @@ class FragmentCharacters : Fragment() {
 
     private fun configRecyclerView() {
         val divisor = DividerItemDecoration(context, LinearLayout.VERTICAL)
-        binding.listaPersonagens.addItemDecoration(divisor)
-        binding.listaPersonagens.adapter = adapter
+        binding.listCharacters.addItemDecoration(divisor)
+        binding.listCharacters.adapter = adapter
         adapter.onItemClickListener = { goDetailsCharacter(it) }
     }
 
     private fun goDetailsCharacter(character: Character) {
-        val direction = FragmentCharactersDirections.actionFragmentPersonagensToFragmentDetalhesPersonagem(character)
+        val direction = FragmentCharactersDirections.actionCharactersForCharacterDetails(character)
         navController.navigate(direction)
     }
 }

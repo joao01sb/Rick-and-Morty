@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imagemPersonagemBanco"
+            android:id="@+id/imgCharacterData"
             android:layout_width="130dp"
             android:layout_height="120dp"
             android:scaleType="centerCrop"
@@ -22,34 +22,36 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/nomePersonagemBanco"
+            android:id="@+id/nameCharacterData"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:text="@string/app_name"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="10dp"
-            app:layout_constraintStart_toEndOf="@+id/imagemPersonagemBanco"
+            app:layout_constraintStart_toEndOf="@+id/imgCharacterData"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/localizacaoPersonagemBanco"
+            android:id="@+id/locationCharacterData"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="11dp"
+            android:maxLines="1"
             android:text="@string/app_name"
-            app:layout_constraintStart_toEndOf="@+id/imagemPersonagemBanco"
-            app:layout_constraintTop_toBottomOf="@id/nomePersonagemBanco" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgCharacterData"
+            app:layout_constraintTop_toBottomOf="@id/nameCharacterData" />
 
         <TextView
-            android:id="@+id/statusPersonagemBanco"
+            android:id="@+id/statusCharacterData"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginStart="10dp"
             android:text="@string/app_name"
-            app:layout_constraintStart_toEndOf="@+id/imagemPersonagemBanco"
+            app:layout_constraintStart_toEndOf="@+id/imgCharacterData"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

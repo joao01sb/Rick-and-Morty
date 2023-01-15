@@ -23,7 +23,7 @@ class FragmentFavorites : Fragment() {
         findNavController()
     }
     private val charactersViewModel: CharactersViewModel by viewModel()
-    private lateinit var adapter: AdapterCharactersFavorites
+    private var adapter = AdapterCharactersFavorites()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,20 +35,20 @@ class FragmentFavorites : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        lifecycleScope.launch {
+        lifecycleScope.launch(Dispatchers.IO) {
             val characters = charactersViewModel.searchFavoritesCharacters()
             characters?.let {
                 adapter = AdapterCharactersFavorites(characters)
                 withContext(Dispatchers.Main) {
-                    binding.personagensSalvos.adapter = adapter
+                    binding.listCharactersFavorites.adapter = adapter
                 }
             } ?: TODO("implementar uma função para mostrar nenhum personagem encontrado")
+            adapter.onItemClickListener = { goDetailsCharacter(it) }
         }
-        adapter.onItemClickListener = { goDetailsCharacter(it) }
     }
 
     private fun goDetailsCharacter(character: Character) {
-        val direction = FragmentFavoritesDirections.actionFragmentFavoritosToFragmentDetalhesPersonagem(character)
+        val direction = FragmentFavoritesDirections.actionFavoritesForDetailsCharacter(character)
         navController.navigate(direction)
     }
 

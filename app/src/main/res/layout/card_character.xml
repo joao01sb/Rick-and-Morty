@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imagemPersonagemBanco"
+            android:id="@+id/imgCharacter"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="4dp"
@@ -20,38 +20,25 @@
             android:src="@color/cardview_dark_background"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/nomePersonagemBanco"
+            app:layout_constraintEnd_toStartOf="@id/nameCharacter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/nomePersonagemBanco"
+            android:id="@+id/nameCharacter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
             android:text="Rick Sanchez"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imagemPersonagemBanco"
-            tools:text="Rick Sanchez" />
-
-        <TextView
-            android:id="@+id/statusCard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="6dp"
-            android:maxLines="1"
-            android:text="Rick Sanchez"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:typeface="serif"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/nomePersonagemBanco"
-            tools:text="Alive" />
+            app:layout_constraintTop_toBottomOf="@id/imgCharacter"
+            tools:text="Rick Sanchez" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

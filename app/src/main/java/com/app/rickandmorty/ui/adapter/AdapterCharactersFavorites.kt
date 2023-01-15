@@ -3,7 +3,7 @@ package com.app.rickandmorty.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.app.rickandmorty.databinding.CardPersonagemBancoBinding
+import com.app.rickandmorty.databinding.CardCharacterDataBinding
 import com.app.rickandmorty.extras.loadImage
 import com.app.rickandmorty.models.Character
 
@@ -13,21 +13,21 @@ class AdapterCharactersFavorites(
 ) : RecyclerView.Adapter<AdapterCharactersFavorites.ViewHolder>() {
 
     inner class ViewHolder(
-        private val binding: CardPersonagemBancoBinding
+        private val binding: CardCharacterDataBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bindCharacterData(character: Character?) {
             character?.let {
-                character.image?.let { binding.imagemPersonagemBanco.loadImage(it) }
-                character.name?.let { binding.nomePersonagemBanco.text = character.name }
-                character.location.let { binding.localizacaoPersonagemBanco.text = character.location.name }
-                character.status?.let { binding.statusPersonagemBanco.text = character.status }
+                character.image?.let { binding.imgCharacterData.loadImage(it) }
+                character.name?.let { binding.nameCharacterData.text = character.name }
+                character.location.let { binding.locationCharacterData.text = character.location.name }
+                character.status?.let { binding.statusCharacterData.text = character.status }
                 binding.root.setOnClickListener { onItemClickListener(character) }
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(CardPersonagemBancoBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        ViewHolder(CardCharacterDataBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

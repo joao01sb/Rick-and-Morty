@@ -12,7 +12,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imagemPersonagem"
+            android:id="@+id/image_character"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:src="@color/black"
@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/nome"
+            android:id="@+id/name_character"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -34,10 +34,10 @@
             android:textStyle="bold"
             android:typeface="monospace"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imagemPersonagem" />
+            app:layout_constraintTop_toBottomOf="@id/image_character" />
 
         <TextView
-            android:id="@+id/origem"
+            android:id="@+id/origin_character"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -46,11 +46,11 @@
             android:textColor="@color/black"
             android:textSize="17sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/nome" />
+            app:layout_constraintTop_toBottomOf="@id/name_character" />
 
 
         <TextView
-            android:id="@+id/status"
+            android:id="@+id/status_character"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -60,7 +60,7 @@
             android:textColor="@color/black"
             android:textSize="17sp"
             app:layout_constraintStart_toEndOf="@id/dash"
-            app:layout_constraintTop_toBottomOf="@id/origem" />
+            app:layout_constraintTop_toBottomOf="@id/origin_character" />
 
         <TextView
             android:id="@+id/dash"
@@ -71,11 +71,11 @@
             android:text="-"
             android:textColor="@color/black"
             android:textSize="17sp"
-            app:layout_constraintStart_toEndOf="@id/genero"
-            app:layout_constraintTop_toBottomOf="@id/origem" />
+            app:layout_constraintStart_toEndOf="@id/gender_character"
+            app:layout_constraintTop_toBottomOf="@id/origin_character" />
 
         <TextView
-            android:id="@+id/genero"
+            android:id="@+id/gender_character"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -84,30 +84,31 @@
             android:textColor="@color/black"
             android:textSize="17sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/origem" />
+            app:layout_constraintTop_toBottomOf="@id/origin_character" />
 
         <TextView
-            android:id="@+id/especie"
+            android:id="@+id/specie_character"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
             android:text="Human"
             android:textColor="@color/black"
             android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/genero" />
+            app:layout_constraintTop_toBottomOf="@id/gender_character" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/salvarPersonagem"
+            android:id="@+id/save_character"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:src="@drawable/ic_favorite"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

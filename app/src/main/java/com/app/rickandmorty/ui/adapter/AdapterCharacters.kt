@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.app.rickandmorty.databinding.CardPersonagemBinding
+import com.app.rickandmorty.databinding.CardCharacterBinding
 import com.app.rickandmorty.extras.loadImage
 import com.app.rickandmorty.models.Character
 
@@ -22,17 +22,16 @@ class AdapterCharacters(
     }
 
     inner class ViewHolder(
-        private val binding: CardPersonagemBinding
+        private val binding: CardCharacterBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bindCharacter(position: Int) {
             val character = getItem(position)
             character?.let {
                 binding.apply {
-                    character.image?.let { imagemPersonagemBanco.loadImage(it) }
-                    nomePersonagemBanco.text = character.name
-                    statusCard.text = character.status
-                    binding.root.setOnClickListener {
+                    character.image?.let { imgCharacter.loadImage(it) }
+                    nameCharacter.text = character.name
+                    root.setOnClickListener {
                         onItemClickListener(character)
                     }
                 }
@@ -41,7 +40,7 @@ class AdapterCharacters(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
-        CardPersonagemBinding.inflate(
+        CardCharacterBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false

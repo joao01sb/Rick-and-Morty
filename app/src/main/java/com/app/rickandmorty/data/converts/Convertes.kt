@@ -2,15 +2,19 @@ package com.app.rickandmorty.data.converts
 
 import androidx.room.TypeConverter
 import com.app.rickandmorty.models.CharacterLocation
+import com.app.rickandmorty.models.Episode
 import com.google.gson.Gson
 import org.json.JSONObject
 
 class Convertes {
 
+    @TypeConverter
+    fun appToString(origin: CharacterLocation): String = Gson().toJson(origin)
+    @TypeConverter
+    fun stringToApp(origin: String): CharacterLocation = Gson().fromJson(origin, CharacterLocation::class.java)
 
     @TypeConverter
-    fun appToString(origem: CharacterLocation): String = Gson().toJson(origem)
-
+    fun listEpisodesToString(episode: Array<String>) : String = Gson().toJson(episode)
     @TypeConverter
-    fun stringToApp(origem: String): CharacterLocation = Gson().fromJson(origem, CharacterLocation::class.java)
+    fun stringToEpisodesList(episode: String) : Array<String> = Gson().fromJson(episode, Array<String>::class.java)
  }
