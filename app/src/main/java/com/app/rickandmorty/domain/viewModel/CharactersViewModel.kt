@@ -1,5 +1,6 @@
 package com.app.rickandmorty.domain.viewModel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
@@ -20,7 +21,7 @@ class CharactersViewModel(
     private val repository: CharacterRepository
 ) : ViewModel() {
 
-    suspend fun searchFavoritesCharacters() : List<Character>? = repository.searchCharactersData()
+    suspend fun searchFavoritesCharacters() : LiveData<List<Character>>? = repository.searchCharactersData()
 
     suspend fun getPersonagensPorPag(pag: Int) = repository.charactersByPag(pag)
 

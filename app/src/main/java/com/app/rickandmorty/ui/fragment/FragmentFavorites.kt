@@ -36,7 +36,7 @@ class FragmentFavorites : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launch(Dispatchers.IO) {
-            val characters = charactersViewModel.searchFavoritesCharacters()
+            val characters = charactersViewModel.searchFavoritesCharacters()?.value
             characters?.let {
                 adapter = AdapterCharactersFavorites(characters)
                 withContext(Dispatchers.Main) {

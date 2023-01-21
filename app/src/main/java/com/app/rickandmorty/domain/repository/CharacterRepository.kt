@@ -1,5 +1,6 @@
 package com.app.rickandmorty.domain.repository
 
+import androidx.lifecycle.LiveData
 import com.app.rickandmorty.connection.RickApi
 import com.app.rickandmorty.data.dao.CharcterDAO
 import com.app.rickandmorty.models.Character
@@ -13,6 +14,6 @@ class CharacterRepository(
 
 //    suspend fun getPersonagem(url: String): Personagem? = api.searchCharacter(url).body()
 
-    suspend fun searchCharactersData() : List<Character>? = acoes.searchFavoritesCharacters()
+    suspend fun searchCharactersData() : LiveData<List<Character>>? = acoes.searchFavoritesCharacters()
 
 }

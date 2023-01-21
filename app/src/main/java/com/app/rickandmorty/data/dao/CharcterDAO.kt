@@ -1,5 +1,6 @@
 package com.app.rickandmorty.data.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -13,5 +14,5 @@ interface CharcterDAO {
      fun saveCharacter(character: Character)
 
     @Query("select * from Character")
-     fun searchFavoritesCharacters() : List<Character>?
+     fun searchFavoritesCharacters() : LiveData<List<Character>>?
 }
