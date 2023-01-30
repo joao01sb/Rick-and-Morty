@@ -3,6 +3,8 @@ package com.app.rickandmorty.ui.fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
@@ -13,9 +15,8 @@ import com.app.rickandmorty.databinding.FragmentCharactersBinding
 import com.app.rickandmorty.domain.viewModel.CharactersViewModel
 import com.app.rickandmorty.models.Character
 import com.app.rickandmorty.ui.adapter.AdapterCharacters
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -37,14 +38,21 @@ class FragmentCharacters : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        configRecyclerView()
+        binding.shimmerContainer.startLayoutAnimation()
         search()
+        configRecyclerView()
     }
 
     private fun search() {
         searchJob?.cancel()
         searchJob = lifecycleScope.launch {
+            delay(1000)
             charactersViewModel.fetchCharacters().collectLatest {
+                withContext(Dispatchers.Main) {
+                    binding.shimmerContainer.stopShimmer()
+                    binding.shimmerContainer.visibility = GONE
+                    binding.listCharacters.visibility = VISIBLE
+                }
                 adapter.submitData(it)
             }
         }
