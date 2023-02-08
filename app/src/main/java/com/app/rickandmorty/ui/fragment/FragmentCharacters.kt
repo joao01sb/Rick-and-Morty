@@ -38,7 +38,6 @@ class FragmentCharacters : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.shimmerContainer.startLayoutAnimation()
         search()
         configRecyclerView()
     }
@@ -48,11 +47,6 @@ class FragmentCharacters : Fragment() {
         searchJob = lifecycleScope.launch {
             delay(1000)
             charactersViewModel.fetchCharacters().collectLatest {
-                withContext(Dispatchers.Main) {
-                    binding.shimmerContainer.stopShimmer()
-                    binding.shimmerContainer.visibility = GONE
-                    binding.listCharacters.visibility = VISIBLE
-                }
                 adapter.submitData(it)
             }
         }
