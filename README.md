@@ -17,6 +17,18 @@
   </a>
 </p>
 
+<p align="center">
+	
+  <img alt="Imagem da Tela Principal" title="Inicio" src=https://github.com/joao01sb/Rick-and-Morty/blob/master/prints/tela_inicial.jpg width="200px">
+	
+  <img alt="Detalhes Personagem" title="Detalhes" src=https://github.com/joao01sb/Rick-and-Morty/blob/master/prints/detalhes_personagem.jpg width="200px">
+	
+  <img alt="Favoritos" title="Favoritos " src=https://github.com/joao01sb/Rick-and-Morty/blob/master/prints/favoritos.jpg width="200px">
+   
+   <img alt="Sobre " title="Sobre desenvolvimento " src=https://github.com/joao01sb/Rick-and-Morty/blob/master/prints/sobre.jpg width="200px">
+
+</p>
+
 Tabela de conteúdos
 =================
 <!--ts-->
@@ -50,6 +62,7 @@ fragments, paginação de dados recebidos pela API Rest do Rick And Morty, tamb�
   - [X] viewModels
   - [X] Corotinas
   - [X] flow kotlin
+  - [X] API rest
   
 
 ## 🚀 Como executar o projeto
@@ -77,10 +90,10 @@ Este Projeto é divido em 8 Principais Partes:
 ```bash
 
 # Clone este repositório
-$ git clone https://github.com/joao01sb/RickandMortyPersonagens.git
+$ git clone https://github.com/joao01sb/Rick-and-Morty.git
 
 # Acesse a pasta do projeto no terminal/cmd
-$ cd Rick and Morty Personagens
+$ cd Rick and Morty
 
 ```
 
