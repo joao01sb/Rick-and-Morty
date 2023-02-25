@@ -6,36 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.FragmentCharacters">
 
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmer_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-
-            <include layout="@layout/card_character_simmer" />
-
-            <include layout="@layout/card_character_simmer" />
-
-            <include layout="@layout/card_character_simmer" />
-            <include layout="@layout/card_character_simmer" />
-            <include layout="@layout/card_character_simmer" />
-
-
-
-
-        </LinearLayout>
-
-    </com.facebook.shimmer.ShimmerFrameLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_characters"
         android:layout_width="match_parent"
