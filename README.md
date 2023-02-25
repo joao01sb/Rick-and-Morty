@@ -17,6 +17,18 @@
   </a>
 </p>
 
+<p align="center">
+	
+  <img alt="Imagem da Tela Principal" title="Inicio" src=https://github.com/joao01sb/Rick-and-Morty/blob/master/prints/tela_inicial.jpg width="200px">
+	
+  <img alt="Detalhes Personagem" title="Detalhes" src=https://github.com/joao01sb/Rick-and-Morty/blob/master/prints/detalhes_personagem.jpg width="200px">
+	
+  <img alt="Favoritos" title="Favoritos " src=https://github.com/joao01sb/Rick-and-Morty/blob/master/prints/favoritos.jpg width="200px">
+   
+   <img alt="Sobre " title="Sobre desenvolvimento " src=https://github.com/joao01sb/Rick-and-Morty/blob/master/prints/sobre.jpg width="200px">
+
+</p>
+
 Tabela de conteúdos
 =================
 <!--ts-->
