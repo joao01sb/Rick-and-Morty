@@ -39,6 +39,7 @@ fragments, paginação de dados recebidos pela API Rest do Rick And Morty, tamb�
   - [x] Lista de personagens da Animação Rick and Morty onde e possivel scrollar sobre varios personagens recebidos da api
   - [x] Imagem do Personagem
   - [x] Nome do Personagem
+  - [x] Tela com personagens favoritos
 
 - [x] Outros Recuros:
   - [X] Manipulação de Dados entre Activities
@@ -48,6 +49,7 @@ fragments, paginação de dados recebidos pela API Rest do Rick And Morty, tamb�
   - [X] injeção de dependencia
   - [X] viewModels
   - [X] Corotinas
+  - [X] flow kotlin
   
 
 ## 🚀 Como executar o projeto
@@ -75,10 +77,10 @@ Este Projeto é divido em 8 Principais Partes:
 ```bash
 
 # Clone este repositório
-$ git clone https://github.com/joao01sb/Rick_and_Morty-Personagens.git
+$ git clone https://github.com/joao01sb/RickandMortyPersonagens.git
 
 # Acesse a pasta do projeto no terminal/cmd
-$ cd Rick_and_Morty-Personagens
+$ cd Rick and Morty Personagens
 
 ```
 
