@@ -45,7 +45,6 @@ class FragmentCharacters : Fragment() {
     private fun search() {
         searchJob?.cancel()
         searchJob = lifecycleScope.launch {
-            delay(1000)
             charactersViewModel.fetchCharacters().collectLatest {
                 adapter.submitData(it)
             }

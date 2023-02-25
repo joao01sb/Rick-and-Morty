@@ -38,11 +38,13 @@ class FragmentFavorites : Fragment() {
         lifecycleScope.launch(Dispatchers.IO) {
             val characters = charactersViewModel.searchFavoritesCharacters()
             characters?.let {
-                adapter = AdapterCharactersFavorites(characters)
-                withContext(Dispatchers.Main) {
-                    binding.messageEmptyFavorites.visibility = View.GONE
-                    binding.listCharactersFavorites.visibility = View.VISIBLE
-                    binding.listCharactersFavorites.adapter = adapter
+                if(it.isNotEmpty()) {
+                    adapter = AdapterCharactersFavorites(characters)
+                    withContext(Dispatchers.Main) {
+                        binding.messageEmptyFavorites.visibility = View.GONE
+                        binding.listCharactersFavorites.visibility = View.VISIBLE
+                        binding.listCharactersFavorites.adapter = adapter
+                    }
                 }
             }
             adapter.onItemClickListener = { goDetailsCharacter(it) }
