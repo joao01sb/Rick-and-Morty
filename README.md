@@ -89,10 +89,10 @@ Este Projeto é divido em 8 Principais Partes:
 ```bash
 
 # Clone este repositório
-$ git clone https://github.com/joao01sb/RickandMortyPersonagens.git
+$ git clone https://github.com/joao01sb/Rick-and-Morty.git
 
 # Acesse a pasta do projeto no terminal/cmd
-$ cd Rick and Morty Personagens
+$ cd Rick and Morty
 
 ```
 
