@@ -14,6 +14,6 @@ class CharacterRepository(
 
 //    suspend fun getPersonagem(url: String): Personagem? = api.searchCharacter(url).body()
 
-    suspend fun searchCharactersData() : LiveData<List<Character>>? = acoes.searchFavoritesCharacters()
+    suspend fun searchCharactersData() : List<Character>? = acoes.searchFavoritesCharacters()
 
 }

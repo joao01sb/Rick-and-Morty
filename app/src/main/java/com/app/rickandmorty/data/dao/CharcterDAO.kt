@@ -14,5 +14,5 @@ interface CharcterDAO {
      fun saveCharacter(character: Character)
 
     @Query("select * from Character")
-     fun searchFavoritesCharacters() : LiveData<List<Character>>?
+     fun searchFavoritesCharacters() : List<Character>?
 }

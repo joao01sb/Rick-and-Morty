@@ -36,13 +36,15 @@ class FragmentFavorites : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launch(Dispatchers.IO) {
-            val characters = charactersViewModel.searchFavoritesCharacters()?.value
+            val characters = charactersViewModel.searchFavoritesCharacters()
             characters?.let {
                 adapter = AdapterCharactersFavorites(characters)
                 withContext(Dispatchers.Main) {
+                    binding.messageEmptyFavorites.visibility = View.GONE
+                    binding.listCharactersFavorites.visibility = View.VISIBLE
                     binding.listCharactersFavorites.adapter = adapter
                 }
-            } ?: TODO("implementar uma função para mostrar nenhum personagem encontrado")
+            }
             adapter.onItemClickListener = { goDetailsCharacter(it) }
         }
     }

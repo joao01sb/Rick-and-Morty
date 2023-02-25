@@ -21,7 +21,7 @@ class CharactersViewModel(
     private val repository: CharacterRepository
 ) : ViewModel() {
 
-    suspend fun searchFavoritesCharacters() : LiveData<List<Character>>? = repository.searchCharactersData()
+    suspend fun searchFavoritesCharacters() : List<Character>? = repository.searchCharactersData()
 
     suspend fun getPersonagensPorPag(pag: Int) = repository.charactersByPag(pag)
 
