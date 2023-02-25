@@ -62,6 +62,7 @@ fragments, paginação de dados recebidos pela API Rest do Rick And Morty, tamb�
   - [X] viewModels
   - [X] Corotinas
   - [X] flow kotlin
+  - [X] API rest
   
 
 ## 🚀 Como executar o projeto
