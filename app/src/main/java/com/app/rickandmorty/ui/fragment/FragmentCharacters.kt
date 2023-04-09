@@ -1,5 +1,10 @@
 package com.app.rickandmorty.ui.fragment
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.opengl.Visibility
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,8 +43,37 @@ class FragmentCharacters : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        search()
-        configRecyclerView()
+        if (isNetworkConnected(requireContext())) {
+            binding.listCharactersNotNetwork.visibility = View.GONE
+            binding.listCharacters.visibility = VISIBLE
+            search()
+            configRecyclerView()
+        } else {
+            binding.listCharactersNotNetwork.visibility = VISIBLE
+        }
+    }
+
+    fun isNetworkConnected(context: Context): Boolean {
+        // Obtém a instância do ConnectivityManager
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        // Verifica se a versão do Android é igual ou superior à 23 (Marshmallow)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            // Obtém a rede ativa
+            val activeNetwork = connectivityManager.activeNetwork ?: return false
+
+            // Obtém as capacidades da rede ativa
+            val capabilities =
+                connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
+
+            // Verifica se a rede tem capacidade para acessar a internet
+            return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+        } else {
+            // Para as versões mais antigas do Android, verifica se há alguma rede ativa
+            val networkInfo = connectivityManager.activeNetworkInfo ?: return false
+            return networkInfo.isConnected
+        }
     }
 
     private fun search() {
