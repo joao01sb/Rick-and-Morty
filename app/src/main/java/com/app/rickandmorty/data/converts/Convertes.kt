@@ -1,8 +1,8 @@
 package com.app.rickandmorty.data.converts
 
 import androidx.room.TypeConverter
-import com.app.rickandmorty.models.CharacterLocation
-import com.app.rickandmorty.models.Episode
+import com.app.rickandmorty.domain.models.CharacterLocation
+import com.app.rickandmorty.domain.models.Episode
 import com.google.gson.Gson
 import org.json.JSONObject
 

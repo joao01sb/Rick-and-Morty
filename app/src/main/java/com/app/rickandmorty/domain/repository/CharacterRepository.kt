@@ -1,9 +1,8 @@
 package com.app.rickandmorty.domain.repository
 
-import androidx.lifecycle.LiveData
-import com.app.rickandmorty.connection.RickApi
+import com.app.rickandmorty.data.network.RickApi
 import com.app.rickandmorty.data.dao.CharcterDAO
-import com.app.rickandmorty.models.Character
+import com.app.rickandmorty.domain.models.Character
 
 class CharacterRepository(
     private val api: RickApi,

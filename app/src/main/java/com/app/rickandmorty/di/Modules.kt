@@ -1,16 +1,16 @@
 package com.app.rickandmorty.di
 
 import androidx.room.Room
-import com.app.rickandmorty.connection.RickApi
+import com.app.rickandmorty.data.network.RickApi
 import com.app.rickandmorty.data.AppDataBase
 import com.app.rickandmorty.domain.repository.CharacterRepository
 import com.app.rickandmorty.data.dao.CharcterDAO
 import com.app.rickandmorty.domain.CharacterPagSearch
 import com.app.rickandmorty.domain.CoroutineContext
 import com.app.rickandmorty.domain.repository.SearchCharacterPag
-import com.app.rickandmorty.domain.viewModel.CharactersViewModel
-import com.app.rickandmorty.domain.viewModel.CharacterViewModel
-import com.app.rickandmorty.models.Character
+import com.app.rickandmorty.ui.viewModel.CharactersViewModel
+import com.app.rickandmorty.ui.viewModel.CharacterViewModel
+import com.app.rickandmorty.domain.models.Character
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.dsl.viewModel

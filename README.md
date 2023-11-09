@@ -83,7 +83,7 @@ Este Projeto é divido em 8 Principais Partes:
 5. [injeção de dependecia](app/src/main/java/com/app/rickandmorty/di)
 6. [banco de dados e Dao](app/src/main/java/com/app/rickandmorty/data)
 7. [dominio e repositorios](app/src/main/java/com/app/rickandmorty/domain)
-8. [endpoints da api](app/src/main/java/com/app/rickandmorty/connection)
+8. [endpoints da api](app/src/main/java/com/app/rickandmorty/network)
 
 ### 📥 Baixando o Projeto
 

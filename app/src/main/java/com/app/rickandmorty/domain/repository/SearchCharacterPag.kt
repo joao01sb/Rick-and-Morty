@@ -1,7 +1,7 @@
 package com.app.rickandmorty.domain.repository
 
 import com.app.rickandmorty.domain.CoroutineContext
-import com.app.rickandmorty.models.Character
+import com.app.rickandmorty.domain.models.Character
 import kotlinx.coroutines.withContext
 
 class SearchCharacterPag(

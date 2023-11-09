@@ -3,7 +3,7 @@ package com.app.rickandmorty.domain
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.app.rickandmorty.domain.repository.SearchCharacterPag
-import com.app.rickandmorty.models.Character
+import com.app.rickandmorty.domain.models.Character
 
 class CharacterPagSearch(
     val getCharacters: SearchCharacterPag,
