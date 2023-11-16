@@ -37,11 +37,11 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 
     composeOptions {
@@ -67,7 +67,7 @@ dependencies {
     kapt("androidx.room:room-compiler:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
 
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.activity:activity-compose:1.8.0")
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
@@ -84,11 +84,11 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:$nav_version")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
-    implementation("io.coil-kt:coil-compose:2.4.0")
 
     val paging_version = "3.2.1"
     implementation("androidx.paging:paging-compose:3.3.0-alpha02")
     implementation("androidx.paging:paging-runtime-ktx:$paging_version")
+    // Paging
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -100,6 +100,8 @@ dependencies {
 
     //koin
     implementation("io.insert-koin:koin-androidx-compose:3.5.0")
+
+    implementation("io.coil-kt:coil-compose:2.5.0")
 
 
 }

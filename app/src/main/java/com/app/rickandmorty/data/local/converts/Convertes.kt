@@ -1,9 +1,10 @@
-package com.app.rickandmorty.data.converts
+package com.app.rickandmorty.data.local.converts
 
 import androidx.room.TypeConverter
 import com.app.rickandmorty.domain.models.CharacterLocation
 import com.app.rickandmorty.domain.models.Episode
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import org.json.JSONObject
 
 class Convertes {
@@ -14,7 +15,10 @@ class Convertes {
     fun stringToApp(origin: String): CharacterLocation = Gson().fromJson(origin, CharacterLocation::class.java)
 
     @TypeConverter
-    fun listEpisodesToString(episode: Array<String>) : String = Gson().toJson(episode)
+    fun listEpisodesToString(episode: List<String>) : String = Gson().toJson(episode)
     @TypeConverter
-    fun stringToEpisodesList(episode: String) : Array<String> = Gson().fromJson(episode, Array<String>::class.java)
+    fun stringToEpisodesList(episodes: String) : List<String> {
+        val listType = object : TypeToken<List<String>>() {}.type
+        return Gson().fromJson(episodes, listType)
+    }
  }

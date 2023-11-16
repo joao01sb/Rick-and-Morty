@@ -1,14 +1,10 @@
 package com.app.rickandmorty.di
 
 import androidx.room.Room
-import com.app.rickandmorty.data.network.RickApi
-import com.app.rickandmorty.data.AppDataBase
-import com.app.rickandmorty.domain.repository.CharacterRepository
-import com.app.rickandmorty.data.dao.CharcterDAO
-import com.app.rickandmorty.domain.CharacterPagSearch
+import com.app.rickandmorty.data.remote.network.RickApi
+import com.app.rickandmorty.data.local.AppDataBase
+import com.app.rickandmorty.data.local.dao.CharcterDAO
 import com.app.rickandmorty.domain.CoroutineContext
-import com.app.rickandmorty.domain.repository.SearchCharacterPag
-import com.app.rickandmorty.ui.viewModel.CharactersViewModel
 import com.app.rickandmorty.ui.viewModel.CharacterViewModel
 import com.app.rickandmorty.domain.models.Character
 import kotlinx.coroutines.Dispatchers
@@ -26,7 +22,6 @@ val connectionModule = module {
 
 val repositoryModule = module {
 
-    factory { CharacterRepository(get(), get()) }
 
     single {
         Room.databaseBuilder(
@@ -57,22 +52,13 @@ fun provideOkHttpClient(): OkHttpClient {
 
 val useCaseModule = module {
     single { CoroutineContext(Dispatchers.Main, Dispatchers.IO) }
-    factory {
-        SearchCharacterPag(
-            coroutineContext = get(),
-            repository = get()
-        )
-    }
+
 }
 
 val domainModules = listOf(useCaseModule)
 
 val presentationModule = module {
 
-    factory { CharacterPagSearch(get())  }
-
-    viewModel { CharactersViewModel(get(), get(), get(), get()) }
-    viewModel { (p: Character) -> CharacterViewModel(p, get()) }
 
 }
 

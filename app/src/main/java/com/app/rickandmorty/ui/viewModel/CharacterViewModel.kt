@@ -1,16 +1,25 @@
 package com.app.rickandmorty.ui.viewModel
 
 import androidx.lifecycle.ViewModel
-import com.app.rickandmorty.data.dao.CharcterDAO
+import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.cachedIn
+import androidx.paging.map
+import com.app.rickandmorty.data.local.dao.CharcterDAO
+import com.app.rickandmorty.data.local.entitys.CharacterEntity
+import com.app.rickandmorty.data.local.mappers.toCharacter
 import com.app.rickandmorty.domain.models.Character
+import kotlinx.coroutines.flow.map
 
 class CharacterViewModel(
-    val character: Character,
-    val repository: CharcterDAO
+    pager: Pager<Int, CharacterEntity>
 ) : ViewModel() {
 
-    suspend fun saveCharacter(character: Character) {
-        repository.saveCharacter(character)
-    }
+    val characterPagingFlow = pager
+        .flow
+        .map { pagingData ->
+            pagingData.map { it.toCharacter() }
+        }
+        .cachedIn(viewModelScope)
 
 }

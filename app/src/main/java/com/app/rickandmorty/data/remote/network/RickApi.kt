@@ -1,6 +1,6 @@
-package com.app.rickandmorty.data.network
+package com.app.rickandmorty.data.remote.network
 
-import com.app.rickandmorty.domain.models.Character
+import com.app.rickandmorty.data.remote.dto.CharacterDto
 import com.app.rickandmorty.domain.models.RespList
 import retrofit2.Response
 import retrofit2.http.GET
@@ -12,9 +12,9 @@ interface RickApi {
 
     @Headers("Content-Type: application/json; charset=UTF-8", "Accept: application/json")
     @GET
-    suspend fun searchCharacter(@Url url: String): Response<Character?>
+    suspend fun searchCharacter(@Url url: String): Response<CharacterDto?>
 
     @Headers("Content-Type: application/json; charset=UTF-8", "Accept: application/json")
     @GET("character")
-    suspend fun searchCharactersByPag(@Query("page") page: Int? = null): RespList<Character>
+    suspend fun searchCharactersByPag(@Query("page") page: Int? = null): RespList<CharacterDto>
 }
