@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.update
 class SingUpViewModel : ViewModel() {
 
     private val _state: MutableStateFlow<SingUpUiState> = MutableStateFlow(SingUpUiState())
-    private val state: StateFlow<SingUpUiState>
+    val state: StateFlow<SingUpUiState>
         get() = _state.asStateFlow()
 
     init {
