@@ -17,4 +17,10 @@ interface RickApi {
     @Headers("Content-Type: application/json; charset=UTF-8", "Accept: application/json")
     @GET("character")
     suspend fun searchCharactersByPag(@Query("page") page: Int? = null): RespList<CharacterDto>
+
+//    @GET("character")
+//    suspend fun getCharacter(
+//        @Query("page") page: Int,
+//        @Query("per_page") pageCount: Int
+//    ): List<CharacterDto>
 }
