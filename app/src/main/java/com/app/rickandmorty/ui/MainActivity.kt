@@ -22,6 +22,7 @@ import androidx.navigation.compose.rememberNavController
 import com.app.rickandmorty.navigation.AppNavHost
 import com.app.rickandmorty.navigation.BottomAppBarItem
 import com.app.rickandmorty.navigation.bottomBarItens
+import com.app.rickandmorty.navigation.navigateSingleTopWithPopUpTo
 import com.app.rickandmorty.ui.composables.AppBottomBar
 import com.app.rickandmorty.ui.theme.RickAndMortyTheme
 
@@ -66,6 +67,7 @@ fun RickApp(navController: NavHostController = rememberNavController()) {
 
     App(
         bottomAppBarItemSelected = selectedItem,
+        onBottomAppBarItemSelectedChange = { item -> navController.navigateSingleTopWithPopUpTo(item) },
         isShowBottomBar = containsInBottomAppBarItems
     ) {
         AppNavHost(navController = navController)

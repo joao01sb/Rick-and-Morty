@@ -7,9 +7,11 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.app.rickandmorty.navigation.BottomAppBarItem
 import com.app.rickandmorty.navigation.bottomBarItens
+import com.app.rickandmorty.ui.theme.black500
 import com.app.rickandmorty.ui.theme.green
 import com.app.rickandmorty.ui.theme.red
 
@@ -22,7 +24,7 @@ fun AppBottomBar(
 ) {
    NavigationBar(
        modifier,
-       containerColor = green
+       containerColor = Color.White
    ) {
        itensBottomAppBar.forEach { item ->
             NavigationBarItem(
@@ -30,7 +32,7 @@ fun AppBottomBar(
                 selected = itemBottomAppBarItem.name == item.name,
                 onClick = { onChangeBottomAppBar(item) },
                 icon = { Icon(imageVector = item.icon, contentDescription = null)},
-                colors = NavigationBarItemDefaults.colors(indicatorColor = red)
+                colors = NavigationBarItemDefaults.colors(indicatorColor = green)
             )
        }
    }

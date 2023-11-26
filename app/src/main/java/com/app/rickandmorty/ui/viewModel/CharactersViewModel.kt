@@ -5,13 +5,11 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.cachedIn
 import androidx.paging.map
-import com.app.rickandmorty.data.local.dao.CharcterDAO
 import com.app.rickandmorty.data.local.entitys.CharacterEntity
 import com.app.rickandmorty.data.local.mappers.toCharacter
-import com.app.rickandmorty.domain.models.Character
 import kotlinx.coroutines.flow.map
 
-class CharacterViewModel(
+class CharactersViewModel(
     pager: Pager<Int, CharacterEntity>
 ) : ViewModel() {
 

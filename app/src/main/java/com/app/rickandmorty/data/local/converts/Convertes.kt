@@ -6,6 +6,7 @@ import com.app.rickandmorty.domain.models.Episode
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.json.JSONObject
+import java.util.Date
 
 class Convertes {
 
@@ -21,4 +22,10 @@ class Convertes {
         val listType = object : TypeToken<List<String>>() {}.type
         return Gson().fromJson(episodes, listType)
     }
+    @TypeConverter
+    fun fromDate(value: Long?): Date? = if (value == null) null else Date(value)
+    @TypeConverter
+    fun dateToLong(date: Date?): Long? = date?.time
+
+
  }

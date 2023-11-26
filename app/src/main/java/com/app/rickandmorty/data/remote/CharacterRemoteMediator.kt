@@ -37,18 +37,16 @@ class CharacterRemoteMediator(
                 }
             }
 
-            val beers = characterApi.searchCharactersByPag(page = loadKey)
+            val characters = characterApi.searchCharactersByPag(page = loadKey)
 
             dataBase.withTransaction {
-                if(loadType == LoadType.REFRESH) {
-                    dataBase.charactersActionData().clearAll()
-                }
-                val beerEntities = beers.results.map { it.toCharacterEntity() }
-                dataBase.charactersActionData().upSertAll(beerEntities)
+                if(loadType == LoadType.REFRESH) { dataBase.characterDAO().clearAll() }
+                val beerEntities = characters.results.map { it.toCharacterEntity() }
+                dataBase.characterDAO().upSertAll(beerEntities)
             }
 
             MediatorResult.Success(
-                endOfPaginationReached = beers.results.isEmpty()
+                endOfPaginationReached = characters.results.isEmpty()
             )
 
         } catch (e: IOException) {

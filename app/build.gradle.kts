@@ -62,11 +62,6 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     implementation("com.google.code.gson:gson:2.10")
 
-    val room_version = "2.6.0"
-    implementation("androidx.room:room-runtime:$room_version")
-    kapt("androidx.room:room-compiler:$room_version")
-    implementation("androidx.room:room-ktx:$room_version")
-
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.activity:activity-compose:1.8.0")
@@ -76,20 +71,6 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
 
-    val lifecycle_version = "2.6.2"
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
-
-    val nav_version = "2.7.5"
-    implementation("androidx.navigation:navigation-compose:$nav_version")
-
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
-
-    val paging_version = "3.2.1"
-    implementation("androidx.paging:paging-compose:3.3.0-alpha02")
-    implementation("androidx.paging:paging-runtime-ktx:$paging_version")
-    // Paging
-
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -98,9 +79,34 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    // Room database
+    val room_version = "2.6.0"
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+    implementation("androidx.room:room-paging:$room_version")
+
+    // lifecycle
+    val lifecycle_version = "2.6.2"
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
+
+    // navigation
+    val nav_version = "2.7.5"
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+
+    // coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    // Paging
+    val paging_version = "3.2.1"
+    implementation("androidx.paging:paging-compose:3.3.0-alpha02")
+    implementation("androidx.paging:paging-runtime-ktx:$paging_version")
+
     //koin
     implementation("io.insert-koin:koin-androidx-compose:3.5.0")
 
+    // coil
     implementation("io.coil-kt:coil-compose:2.5.0")
 
 

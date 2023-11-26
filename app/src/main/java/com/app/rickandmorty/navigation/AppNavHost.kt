@@ -12,7 +12,7 @@ fun AppNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = DestinationsApp.SplashScreen.rota,
+        startDestination = DestinationsApp.HomeGraph.rota,
         modifier = modifier
     ) {
         loginGraph(
@@ -20,6 +20,15 @@ fun AppNavHost(
             onNavigateToSingUp = { /*TODO*/ },
             onNavigateToHome = { }
         )
-
+        homeGraph(
+            onNavigationToCaracterDetails = {
+                navController.navigateToCharacter(it.id.toString())
+            }
+        )
+        characterDetails(
+            onBack = {
+                navController.navigateUp()
+            }
+        )
     }
 }

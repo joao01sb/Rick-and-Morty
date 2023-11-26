@@ -25,17 +25,18 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.app.rickandmorty.R
 import com.app.rickandmorty.domain.models.Character
+import com.app.rickandmorty.domain.models.FavoriteCharacter
 
 @Composable
 fun CardFavorite(
     modifier: Modifier = Modifier,
-    character: Character? = null,
+    character: FavoriteCharacter? = null,
     onDetailsCharacter: (Character) -> Unit = {}
 ) {
     Column(
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier.clickable { onDetailsCharacter }
+        modifier = modifier.clickable { onDetailsCharacter }.padding(10.dp)
     ) {
         val localContext = LocalContext.current
         Box {
@@ -65,7 +66,7 @@ fun CardFavorite(
         )
         Spacer(modifier = Modifier.padding(top = 2.dp))
         Text(
-            text = character?.origin?.name ?: " Undefined",
+            text = character?.origin ?: " Undefined",
             fontSize = 10.sp,
             maxLines = 1,
             textAlign = TextAlign.Center

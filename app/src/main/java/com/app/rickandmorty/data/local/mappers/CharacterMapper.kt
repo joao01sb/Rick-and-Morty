@@ -29,5 +29,5 @@ fun CharacterDto.toCharacterEntity() = CharacterEntity(
     image = image,
     episode = episode,
     url = url,
-    created = created
+    created = created,
 )
