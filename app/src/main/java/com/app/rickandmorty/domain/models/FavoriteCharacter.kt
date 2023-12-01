@@ -3,6 +3,7 @@ package com.app.rickandmorty.domain.models
 import com.app.rickandmorty.data.local.entitys.CharacterEntity
 import com.app.rickandmorty.data.local.entitys.FavoriteCharacterEntity
 import com.app.rickandmorty.domain.models.Character
+import java.util.Date
 
 data class FavoriteCharacter(
     val id: Int,
@@ -25,5 +26,6 @@ fun FavoriteCharacter.toEntity() = FavoriteCharacterEntity(
     origin = origin,
     location = location,
     image = image,
-    episode = episode
+    episode = episode,
+    dataCriacao = Date()
 )

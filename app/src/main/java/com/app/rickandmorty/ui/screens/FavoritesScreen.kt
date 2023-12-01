@@ -22,15 +22,21 @@ import com.app.rickandmorty.ui.uiState.FavoriteUiState
 fun FavoritesScreen(
     onDeleteCharacter: (Int) -> Unit = {},
     state: FavoriteUiState = FavoriteUiState(),
-    onSharedCharacter: () -> Unit = {}
+    onNavigationDetailsFavorite: (Pair<Int, Boolean>) -> Unit = {}
 ) {
-    val context = LocalContext.current
     val favorites = state.favorites
     Box(modifier = Modifier.fillMaxSize()) {
         if (favorites.isNotEmpty()) {
             LazyVerticalGrid(columns = GridCells.Fixed(3)) {
                 items(favorites) {
-                    CardFavorite(character = it)
+                    CardFavorite(
+                        character = it,
+                        onDetailsCharacter = {
+                            onNavigationDetailsFavorite(Pair(it.id, true))
+                        }
+                    ) {
+                        onDeleteCharacter(it.id)
+                    }
                 }
             }
         } else {

@@ -2,6 +2,7 @@ package com.app.rickandmorty.ui.composables
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -34,6 +35,7 @@ import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
 import coil.request.ImageRequest
 import com.app.rickandmorty.R
+import com.app.rickandmorty.ui.theme.black200
 
 @Composable
 fun CardCharacter(
@@ -48,7 +50,7 @@ fun CardCharacter(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
             .border(border = BorderStroke(0.1.dp, color = Color.Black))
-            .clickable { onDetailsCharacter() }
+            .clickable { onDetailsCharacter() }.background(color = Color.White)
     ) {
         Box {
             AsyncImage(
@@ -59,13 +61,7 @@ fun CardCharacter(
                     .build(),
                 contentScale = ContentScale.Crop,
                 contentDescription = null,
-                placeholder = painterResource(R.drawable.rick),
-                onLoading = {
-
-                },
-                onError = {
-
-                }
+                placeholder = painterResource(R.drawable.rick)
             )
         }
         Spacer(modifier = Modifier.padding(top = 2.dp))

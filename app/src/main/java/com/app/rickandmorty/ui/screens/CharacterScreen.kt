@@ -64,7 +64,7 @@ fun CharacterScreen(
             }
         }
 
-        is CharacterDetailsUiState.Success -> {
+        is CharacterDetailsUiState.SuccessCharecter -> {
             val character = character.character
             Column(modifier = Modifier.fillMaxSize()) {
                 Row(
@@ -112,6 +112,85 @@ fun CharacterScreen(
                     )
                     Text(
                         text = "Local: ${character.location.name}",
+                        fontSize = 18.sp,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Text(
+                        text = "Especie: ${character.species}",
+                        fontSize = 18.sp,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Text(
+                        text = "Genero: ${character.gender}",
+                        fontSize = 18.sp,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Text(
+                        text = "Status: ${character.status}",
+                        fontSize = 18.sp,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
+                Button(
+                    onClick = onFavorite,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 10.dp)
+                ) {
+                    Text(text = "Salvar", fontSize = 18.sp, color = Color.White)
+                }
+                Spacer(modifier = Modifier.padding(bottom = 14.dp))
+            }
+        }
+
+        is CharacterDetailsUiState.SuccessFavorite -> {
+            val character = character.favorite
+            Column(modifier = Modifier.fillMaxSize()) {
+                Row(
+                    modifier = Modifier.heightIn(50.dp, 56.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Start
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.ArrowBack, contentDescription = null,
+                        modifier = Modifier.padding(horizontal = 10.dp).clickable {
+                            onBack()
+                        },
+                    )
+                }
+                Column(
+                    modifier = Modifier
+                        .weight(2f)
+                        .fillMaxWidth(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Box {
+                        AsyncImage(
+                            model = ImageRequest.Builder(LocalContext.current)
+                                .data(character?.image)
+                                .crossfade(true)
+                                .build(),
+                            modifier = modifier.size(300.dp).fillMaxWidth(),
+                            placeholder = painterResource(id = R.drawable.rick),
+                            contentDescription = null
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.padding(bottom = 6.dp))
+                Column(
+                    modifier = Modifier
+                        .weight(3f)
+                        .padding(start = 4.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    Text(
+                        text = "Nome: ${character.name}",
+                        fontSize = 18.sp,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Text(
+                        text = "Local: ${character.origin}",
                         fontSize = 18.sp,
                         modifier = Modifier.fillMaxWidth()
                     )

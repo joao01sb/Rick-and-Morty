@@ -1,8 +1,10 @@
 package com.app.rickandmorty.ui.composables
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,34 +29,39 @@ import com.app.rickandmorty.R
 import com.app.rickandmorty.domain.models.Character
 import com.app.rickandmorty.domain.models.FavoriteCharacter
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CardFavorite(
     modifier: Modifier = Modifier,
     character: FavoriteCharacter? = null,
-    onDetailsCharacter: (Character) -> Unit = {}
+    onDetailsCharacter: (FavoriteCharacter) -> Unit = {},
+    onDeleteFavorite: () -> Unit = {}
 ) {
     Column(
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier.clickable { onDetailsCharacter }.padding(10.dp)
+        modifier = modifier
+            .combinedClickable(
+                onClick = {
+                    onDetailsCharacter(character!!)
+                },
+                onLongClick = {
+                    onDeleteFavorite()
+                },
+            )
+            .padding(4.dp)
     ) {
         val localContext = LocalContext.current
         Box {
             AsyncImage(
-                modifier = Modifier.size(100.dp),
+                modifier = Modifier.size(140.dp),
                 model = ImageRequest.Builder(localContext)
                     .data(character?.image)
                     .crossfade(true)
                     .build(),
                 contentScale = ContentScale.Crop,
                 contentDescription = null,
-                placeholder = painterResource(R.drawable.rick),
-                onLoading = {
-
-                },
-                onError = {
-
-                }
+                placeholder = painterResource(R.drawable.rick)
             )
         }
         Spacer(modifier = Modifier.padding(top = 2.dp))

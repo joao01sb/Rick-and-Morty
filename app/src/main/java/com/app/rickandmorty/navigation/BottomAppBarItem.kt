@@ -19,14 +19,9 @@ sealed class BottomAppBarItem(
         name = "favorites",
         icon = Icons.Filled.Favorite
     )
-    object About : BottomAppBarItem(
-        name = "about",
-        icon = Icons.Filled.AccountCircle
-    )
 }
 
 val bottomBarItens = listOf(
     BottomAppBarItem.AllCharacters,
-    BottomAppBarItem.Favorites,
-    BottomAppBarItem.About
+    BottomAppBarItem.Favorites
 )

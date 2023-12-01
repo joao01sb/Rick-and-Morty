@@ -3,6 +3,7 @@ package com.app.rickandmorty.ui.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.rickandmorty.data.local.AppDataBase
+import com.app.rickandmorty.data.local.entitys.toFavoriteCharacter
 import com.app.rickandmorty.domain.models.toEntity
 import com.app.rickandmorty.domain.models.toFavoriteEntity
 import com.app.rickandmorty.ui.uiState.CharacterDetailsUiState
@@ -20,25 +21,36 @@ class CharacterDetailsViewModel(
     )
     val uiState = _uiState.asStateFlow()
 
+
+
     suspend fun saveCharacter() {
         when (_uiState.value) {
-            is CharacterDetailsUiState.Success -> {
-                dataBase.favoriteDAO().saveCharacter((_uiState.value as CharacterDetailsUiState.Success).character.toFavoriteEntity())
+            is CharacterDetailsUiState.SuccessCharecter -> {
+                dataBase.favoriteDAO().saveCharacter((_uiState.value as CharacterDetailsUiState.SuccessCharecter).character.toFavoriteEntity())
             }
             else -> {}
         }
     }
 
-    fun findCharacterById(id: String) {
+    fun findCharacterById(id: Int, isFavorite: Boolean) {
         _uiState.update {
             CharacterDetailsUiState.Loading
         }
         viewModelScope.launch {
-            val state = dataBase.characterDAO().findCharacterById(id)?.let {
-                CharacterDetailsUiState.Success(it)
-            } ?: CharacterDetailsUiState.Failure
-            _uiState.update {
-                state
+            if (isFavorite) {
+                val state = dataBase.favoriteDAO().findFavoriteById(id)?.let {
+                    CharacterDetailsUiState.SuccessFavorite(it)
+                } ?: CharacterDetailsUiState.Failure
+                _uiState.update {
+                    state
+                }
+            } else {
+                val state = dataBase.characterDAO().findCharacterById(id)?.let {
+                    CharacterDetailsUiState.SuccessCharecter(it)
+                } ?: CharacterDetailsUiState.Failure
+                _uiState.update {
+                    state
+                }
             }
         }
     }

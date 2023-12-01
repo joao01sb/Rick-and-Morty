@@ -12,7 +12,7 @@ import org.koin.androidx.compose.koinViewModel
 
 internal const val startScreenRoute = "start"
 fun NavGraphBuilder.startScreenNavigation(
-    onClickCharacter: (Character) -> Unit = {}
+    onClickCharacter: (Pair<Int, Boolean>) -> Unit = {}
 ) {
     composable(route = startScreenRoute) {
         val viewmodel = koinViewModel<CharactersViewModel>()

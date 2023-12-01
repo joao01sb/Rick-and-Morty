@@ -22,5 +22,5 @@ interface CharacterDAO {
     suspend fun clearAll()
 
     @Query("select * from character where id == :id")
-    suspend fun findCharacterById(id: String) : Character?
+    suspend fun findCharacterById(id: Int) : Character?
 }

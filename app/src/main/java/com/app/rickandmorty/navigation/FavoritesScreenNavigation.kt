@@ -14,7 +14,9 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 internal const val favoritesScreenRoute = "favorites"
-fun NavGraphBuilder.favoritesScreenNavigation() {
+fun NavGraphBuilder.favoritesScreenNavigation(
+    onNavigationDetailsFavorite: (Pair<Int, Boolean>) -> Unit
+) {
     composable(route = favoritesScreenRoute) {
         val viewmodel = koinViewModel<FavoritesScreenViewModel>()
         val uiState by viewmodel.uiState.collectAsState()
@@ -26,7 +28,7 @@ fun NavGraphBuilder.favoritesScreenNavigation() {
                     viewmodel.delete(characterId)
                 }
             },
-            onSharedCharacter = {}
+            onNavigationDetailsFavorite = onNavigationDetailsFavorite
         )
     }
 }

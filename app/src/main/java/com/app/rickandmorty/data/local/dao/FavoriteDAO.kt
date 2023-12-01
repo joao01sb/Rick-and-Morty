@@ -9,6 +9,7 @@ import androidx.room.Upsert
 import com.app.rickandmorty.data.local.entitys.CharacterEntity
 import com.app.rickandmorty.data.local.entitys.FavoriteCharacterEntity
 import com.app.rickandmorty.domain.models.Character
+import com.app.rickandmorty.domain.models.FavoriteCharacter
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -20,6 +21,9 @@ interface FavoriteDAO {
 
     @Query("delete from favorite where id == :id")
     suspend fun delete(id: Int)
+
+    @Query("select * from character where id == :id")
+    suspend fun findFavoriteById(id: Int) : FavoriteCharacter?
 
     @Query("select * from favorite")
     fun allFavorites() : Flow<List<FavoriteCharacterEntity>>

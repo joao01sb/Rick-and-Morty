@@ -8,11 +8,9 @@ import com.app.rickandmorty.data.remote.network.RickApi
 import com.app.rickandmorty.data.local.AppDataBase
 import com.app.rickandmorty.data.local.dao.CharacterDAO
 import com.app.rickandmorty.data.remote.CharacterRemoteMediator
-import com.app.rickandmorty.domain.CoroutineContext
 import com.app.rickandmorty.ui.viewModel.CharacterDetailsViewModel
 import com.app.rickandmorty.ui.viewModel.CharactersViewModel
 import com.app.rickandmorty.ui.viewModel.FavoritesScreenViewModel
-import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
@@ -34,7 +32,6 @@ val repositoryModule = module {
 
 @OptIn(ExperimentalPagingApi::class)
 val useCaseModule = module {
-    single { CoroutineContext(Dispatchers.Main, Dispatchers.IO) }
     single {
         Pager(
             config = PagingConfig(pageSize = 20),

@@ -54,14 +54,13 @@ fun RickApp(navController: NavHostController = rememberNavController()) {
     val selectedItem by remember(currentDestination) {
         val item = when (currentRoute) {
             "favorites" -> BottomAppBarItem.Favorites
-            "about" -> BottomAppBarItem.About
             else -> BottomAppBarItem.AllCharacters
         }
         mutableStateOf(item)
     }
 
     val containsInBottomAppBarItems = when (currentRoute) {
-        "start", "favorites", "about" -> true
+        "start", "favorites" -> true
         else -> false
     }
 

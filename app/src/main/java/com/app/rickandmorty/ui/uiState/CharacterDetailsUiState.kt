@@ -1,6 +1,7 @@
 package com.app.rickandmorty.ui.uiState
 
 import com.app.rickandmorty.domain.models.Character
+import com.app.rickandmorty.domain.models.FavoriteCharacter
 
 sealed class CharacterDetailsUiState {
 
@@ -8,6 +9,7 @@ sealed class CharacterDetailsUiState {
 
     object Failure : CharacterDetailsUiState()
 
-    class Success(val character: Character) : CharacterDetailsUiState()
+    class SuccessCharecter(val character: Character) : CharacterDetailsUiState()
 
+    class SuccessFavorite(val favorite: FavoriteCharacter) : CharacterDetailsUiState()
 }

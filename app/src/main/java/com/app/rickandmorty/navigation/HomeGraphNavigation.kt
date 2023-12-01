@@ -7,15 +7,16 @@ import androidx.navigation.navigation
 import com.app.rickandmorty.domain.models.Character
 
 fun NavGraphBuilder.homeGraph(
-    onNavigationToCaracterDetails: (Character) -> Unit
+    onNavigationToCaracterDetails: (Pair<Int, Boolean>) -> Unit
 ) {
     navigation(
         startDestination = DestinationsApp.StartScreen.rota,
         route = DestinationsApp.HomeGraph.rota
     ) {
         startScreenNavigation(onClickCharacter = onNavigationToCaracterDetails)
-        favoritesScreenNavigation()
-        aboutScreenNavigation()
+        favoritesScreenNavigation(
+            onNavigationDetailsFavorite = onNavigationToCaracterDetails
+        )
     }
 }
 
@@ -30,10 +31,6 @@ fun NavController.navigateSingleTopWithPopUpTo(
         BottomAppBarItem.AllCharacters -> Pair(
             DestinationsApp.StartScreen.rota,
             ::navigateToStart
-        )
-        BottomAppBarItem.About -> Pair(
-            DestinationsApp.AboutScreen.rota,
-            ::navigateToAbout
         )
     }
 
