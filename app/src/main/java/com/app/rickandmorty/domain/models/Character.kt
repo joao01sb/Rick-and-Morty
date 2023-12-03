@@ -16,30 +16,3 @@ data class Character(
     val image: String?,
     val episode: List<String>?
 )
-
-fun Character.toEntity() = CharacterEntity(
-    id = id,
-    name = name,
-    status = status,
-    species = species,
-    type = type,
-    gender = gender,
-    origin = origin,
-    location = location,
-    image = image,
-    episode = episode!!,
-    url = "",
-    created = ""
-)
-
-fun Character.toFavoriteEntity() = FavoriteCharacterEntity(
-    id = id,
-    name = name,
-    status = status,
-    species = species,
-    gender = gender,
-    origin = origin?.name,
-    location = location.name,
-    image = image,
-    episode = episode
-)

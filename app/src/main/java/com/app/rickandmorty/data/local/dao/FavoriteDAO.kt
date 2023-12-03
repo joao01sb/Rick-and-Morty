@@ -23,7 +23,7 @@ interface FavoriteDAO {
     suspend fun delete(id: Int)
 
     @Query("select * from character where id == :id")
-    suspend fun findFavoriteById(id: Int) : FavoriteCharacter?
+    suspend fun findFavoriteById(id: Int) : FavoriteCharacterEntity?
 
     @Query("select * from favorite")
     fun allFavorites() : Flow<List<FavoriteCharacterEntity>>

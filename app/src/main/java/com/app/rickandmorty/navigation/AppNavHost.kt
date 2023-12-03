@@ -2,6 +2,7 @@ package com.app.rickandmorty.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 
@@ -23,6 +24,9 @@ fun AppNavHost(
         characterDetails(
             onBack = {
                 navController.navigateUp()
+            },
+            saveSucess = {
+                navController.currentBackStackEntry?.savedStateHandle?.set("save_character", "Adicionado aos favoritos, com sucesso!")
             }
         )
     }

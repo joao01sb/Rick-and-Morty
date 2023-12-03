@@ -9,7 +9,7 @@ sealed class CharacterDetailsUiState {
 
     object Failure : CharacterDetailsUiState()
 
-    class SuccessCharecter(val character: Character) : CharacterDetailsUiState()
+    data class SuccessCharecter(val character: Character, val isSave: Boolean = false) : CharacterDetailsUiState()
 
-    class SuccessFavorite(val favorite: FavoriteCharacter) : CharacterDetailsUiState()
+    data class SuccessFavorite(val favorite: FavoriteCharacter, val isSave: Boolean = true) : CharacterDetailsUiState()
 }

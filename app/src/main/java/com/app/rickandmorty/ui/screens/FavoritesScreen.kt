@@ -9,6 +9,10 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -16,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.rickandmorty.domain.models.FavoriteCharacter
 import com.app.rickandmorty.ui.composables.CardFavorite
+import com.app.rickandmorty.ui.composables.DialogDelete
 import com.app.rickandmorty.ui.uiState.FavoriteUiState
 
 @Composable
@@ -24,6 +29,7 @@ fun FavoritesScreen(
     state: FavoriteUiState = FavoriteUiState(),
     onNavigationDetailsFavorite: (Pair<Int, Boolean>) -> Unit = {}
 ) {
+    var dialogDelete by remember { mutableStateOf(false) }
     val favorites = state.favorites
     Box(modifier = Modifier.fillMaxSize()) {
         if (favorites.isNotEmpty()) {
@@ -35,7 +41,12 @@ fun FavoritesScreen(
                             onNavigationDetailsFavorite(Pair(it.id, true))
                         }
                     ) {
-                        onDeleteCharacter(it.id)
+                        dialogDelete = true
+                    }
+                    if (dialogDelete) {
+                        DialogDelete(onDismissRequest = { dialogDelete = !dialogDelete }) {
+                            onDeleteCharacter(it.id)
+                        }
                     }
                 }
             }

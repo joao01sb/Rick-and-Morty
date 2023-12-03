@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.rickandmorty.data.local.AppDataBase
 import com.app.rickandmorty.data.local.entitys.toFavoriteCharacter
-import com.app.rickandmorty.domain.models.toEntity
-import com.app.rickandmorty.domain.models.toFavoriteEntity
+import com.app.rickandmorty.data.local.mappers.toCharacter
+import com.app.rickandmorty.data.local.mappers.toFavoriteEntity
 import com.app.rickandmorty.ui.uiState.CharacterDetailsUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -21,14 +21,23 @@ class CharacterDetailsViewModel(
     )
     val uiState = _uiState.asStateFlow()
 
-
-
     suspend fun saveCharacter() {
-        when (_uiState.value) {
-            is CharacterDetailsUiState.SuccessCharecter -> {
+        try {
+            if (_uiState.value is CharacterDetailsUiState.SuccessCharecter)
                 dataBase.favoriteDAO().saveCharacter((_uiState.value as CharacterDetailsUiState.SuccessCharecter).character.toFavoriteEntity())
+            emiteSaveCharacter()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun emiteSaveCharacter() {
+        if (_uiState.value is CharacterDetailsUiState.SuccessCharecter) {
+            _uiState.update {
+                (it as CharacterDetailsUiState.SuccessCharecter).copy(
+                    isSave = true
+                )
             }
-            else -> {}
         }
     }
 
@@ -39,14 +48,14 @@ class CharacterDetailsViewModel(
         viewModelScope.launch {
             if (isFavorite) {
                 val state = dataBase.favoriteDAO().findFavoriteById(id)?.let {
-                    CharacterDetailsUiState.SuccessFavorite(it)
+                    CharacterDetailsUiState.SuccessFavorite(it.toFavoriteCharacter())
                 } ?: CharacterDetailsUiState.Failure
                 _uiState.update {
                     state
                 }
             } else {
-                val state = dataBase.characterDAO().findCharacterById(id)?.let {
-                    CharacterDetailsUiState.SuccessCharecter(it)
+                var state = dataBase.characterDAO().findCharacterById(id)?.let {
+                    CharacterDetailsUiState.SuccessCharecter(it.toCharacter())
                 } ?: CharacterDetailsUiState.Failure
                 _uiState.update {
                     state

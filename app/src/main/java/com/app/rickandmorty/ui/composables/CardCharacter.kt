@@ -49,6 +49,7 @@ fun CardCharacter(
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
+            .padding(6.dp)
             .border(border = BorderStroke(0.1.dp, color = Color.Black))
             .clickable { onDetailsCharacter() }.background(color = Color.White)
     ) {

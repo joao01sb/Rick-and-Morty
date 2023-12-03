@@ -72,12 +72,14 @@ fun CardFavorite(
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.padding(top = 2.dp))
-        Text(
-            text = character?.origin ?: " Undefined",
-            fontSize = 10.sp,
-            maxLines = 1,
-            textAlign = TextAlign.Center
-        )
+        character?.origin?.name?.let {
+            Text(
+                text = it,
+                fontSize = 10.sp,
+                maxLines = 1,
+                textAlign = TextAlign.Center
+            )
+        }
     }
 }
 

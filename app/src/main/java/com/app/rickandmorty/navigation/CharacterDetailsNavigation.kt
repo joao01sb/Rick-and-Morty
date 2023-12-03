@@ -20,7 +20,8 @@ internal const val characterDetailsRoute = "characterDetails"
 internal const val characterId = "characterId"
 internal const val isFavorite = "isFavorite"
 fun NavGraphBuilder.characterDetails(
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    saveSucess: () -> Unit = {}
 ) {
     composable(
         route = "$characterDetailsRoute/{characterId}/{isFavorite}",
@@ -42,8 +43,13 @@ fun NavGraphBuilder.characterDetails(
             CharacterScreen(
                 character = character,
                 onFavorite = {
-                    scope.launch {
-                        viewModel.saveCharacter()
+                    try {
+                        scope.launch {
+                            viewModel.saveCharacter()
+                        }
+                        saveSucess()
+                    } catch (e: Exception) {
+                        e.printStackTrace()
                     }
                 },
                 onBack = {
