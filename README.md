@@ -9,24 +9,22 @@
   <a href="#icons">
     <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/joao01sb/Rick_and_Morty-Personagens?color=2304D361">
   </a>
-  <a href="https://github.com/guilhermePalma/RecyclerView">
+  <a href="h">
     <img alt="Repository size" src="https://img.shields.io/github/repo-size/joao01sb/Rick_and_Morty-Personagens">
   </a>
-  <a href="https://github.com/guilhermePalma/RecyclerView/commits/main">
+  <a href="h">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/joao01sb/Rick_and_Morty-Personagens">
   </a>
 </p>
 
 <p align="center">
 	
-  <img alt="Imagem da Tela Principal" title="Inicio" src=https://github.com/joao01sb/Rick-and-Morty/blob/master/prints/tela_inicial.jpg width="200px">
+  <img alt="Imagem da Tela Principal" title="Inicio" src=https://github.com/joao01sb/Rick-and-Morty/blob/master/prints/screen_initial.jpeg width="200px">
 	
-  <img alt="Detalhes Personagem" title="Detalhes" src=https://github.com/joao01sb/Rick-and-Morty/blob/master/prints/detalhes_personagem.jpg width="200px">
+  <img alt="Detalhes Personagem" title="Detalhes" src=https://github.com/joao01sb/Rick-and-Morty/blob/master/prints/detalhes_personagem.jpeg width="200px">
 	
-  <img alt="Favoritos" title="Favoritos " src=https://github.com/joao01sb/Rick-and-Morty/blob/master/prints/favoritos.jpg width="200px">
+  <img alt="Favoritos" title="Favoritos " src=https://github.com/joao01sb/Rick-and-Morty/blob/master/prints/favoritos.jpeg width="200px">
    
-   <img alt="Sobre " title="Sobre desenvolvimento " src=https://github.com/joao01sb/Rick-and-Morty/blob/master/prints/sobre.jpg width="200px">
-
 </p>
 
 Tabela de conteúdos
@@ -54,10 +52,10 @@ fragments, paginação de dados recebidos pela API Rest do Rick And Morty, tamb�
   - [x] Tela com personagens favoritos
 
 - [x] Outros Recuros:
-  - [X] Manipulação de Dados entre Activities
+  - [X] navegation compose
   - [X] Banco de Dados Interno com Room
-  - [X] Fragment
-  - [X] Paging
+  - [X] jetpack compose
+  - [X] Paging 3 
   - [X] injeção de dependencia
   - [X] viewModels
   - [X] Corotinas
@@ -74,16 +72,6 @@ Antes de começar, você vai precisar ter instalado em sua máquina:
 - [Android Studio](https://developer.android.com/studio/) → Editor da Google voltado ao Desenvolvimento Android ou Intellij Idea
 
 <br/>
-
-Este Projeto é divido em 8 Principais Partes:
-1. [Configurações das Telas](app/src/main/java/com/app/rickandmorty/ui)
-2. [Layout das Telas](app/src/main/res/layout)
-3. [navegação das Telas](app/src/main/res/navegation)
-4. [Classes modelo](app/src/main/java/com/app/rickandmorty/models)
-5. [injeção de dependecia](app/src/main/java/com/app/rickandmorty/di)
-6. [banco de dados e Dao](app/src/main/java/com/app/rickandmorty/data)
-7. [dominio e repositorios](app/src/main/java/com/app/rickandmorty/domain)
-8. [endpoints da api](app/src/main/java/com/app/rickandmorty/network)
 
 ### 📥 Baixando o Projeto
 
