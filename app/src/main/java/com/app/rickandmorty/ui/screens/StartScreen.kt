@@ -19,7 +19,6 @@ import androidx.paging.compose.LazyPagingItems
 import com.app.rickandmorty.domain.models.Character
 import com.app.rickandmorty.ui.composables.CardCharacter
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StartScreen(
     modifier: Modifier = Modifier,

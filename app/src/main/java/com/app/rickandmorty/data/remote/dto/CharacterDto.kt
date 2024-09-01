@@ -2,7 +2,9 @@ package com.app.rickandmorty.data.remote.dto
 
 import com.app.rickandmorty.domain.models.CharacterLocation
 import com.app.rickandmorty.domain.models.Location
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class CharacterDto(
     val id: Int,
     val name: String,

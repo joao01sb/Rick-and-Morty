@@ -3,8 +3,9 @@ package com.app.rickandmorty.data.local.entitys
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.app.rickandmorty.domain.models.CharacterLocation
-import java.io.Serializable
+import kotlinx.serialization.Serializable
 
+@Serializable
 @Entity(tableName = "character")
 data class CharacterEntity(
     @PrimaryKey
@@ -20,4 +21,4 @@ data class CharacterEntity(
     val episode: List<String>,
     val url: String,
     val created: String,
-) : Serializable
+)

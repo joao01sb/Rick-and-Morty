@@ -5,17 +5,18 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
+import coil.network.HttpException
 import com.app.rickandmorty.data.local.AppDataBase
 import com.app.rickandmorty.data.local.entitys.CharacterEntity
 import com.app.rickandmorty.data.local.mappers.toCharacterEntity
-import com.app.rickandmorty.data.remote.network.RickApi
-import retrofit2.HttpException
+import com.app.rickandmorty.data.remote.network.ResultRequest
+import com.app.rickandmorty.data.remote.network.RickApiUseCase
 import java.io.IOException
 
 @OptIn(ExperimentalPagingApi::class)
 class CharacterRemoteMediator(
     private val dataBase: AppDataBase,
-    private val characterApi: RickApi
+    private val characterApi: RickApiUseCase
 ) : RemoteMediator<Int, CharacterEntity>() {
     override suspend fun load(
         loadType: LoadType,
@@ -37,18 +38,21 @@ class CharacterRemoteMediator(
                 }
             }
 
-            val characters = characterApi.searchCharactersByPag(page = loadKey)
-
-            dataBase.withTransaction {
-                if(loadType == LoadType.REFRESH) { dataBase.characterDAO().clearAll() }
-                val beerEntities = characters.results.map { it.toCharacterEntity() }
-                dataBase.characterDAO().upSertAll(beerEntities)
+            when(val request = characterApi.searchCharactersByPag(page = loadKey)){
+                is ResultRequest.Error -> {
+                    MediatorResult.Error(request.exception)
+                }
+                is ResultRequest.Success -> {
+                    dataBase.withTransaction {
+                        if(loadType == LoadType.REFRESH) { dataBase.characterDAO().clearAll() }
+                        val beerEntities = request.data.results.map { it.toCharacterEntity() }
+                        dataBase.characterDAO().upSertAll(beerEntities)
+                    }
+                    MediatorResult.Success(
+                        endOfPaginationReached = request.data.results.isEmpty()
+                    )
+                }
             }
-
-            MediatorResult.Success(
-                endOfPaginationReached = characters.results.isEmpty()
-            )
-
         } catch (e: IOException) {
             MediatorResult.Error(e)
         } catch (e: HttpException) {

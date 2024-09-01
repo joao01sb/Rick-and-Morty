@@ -1,27 +1,33 @@
 package com.app.rickandmorty.di
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.room.Room
-import com.app.rickandmorty.data.remote.network.RickApi
 import com.app.rickandmorty.data.local.AppDataBase
 import com.app.rickandmorty.data.local.dao.CharacterDAO
 import com.app.rickandmorty.data.remote.CharacterRemoteMediator
+import com.app.rickandmorty.data.remote.network.RickApiUseCase
 import com.app.rickandmorty.ui.viewModel.CharacterDetailsViewModel
 import com.app.rickandmorty.ui.viewModel.CharactersViewModel
 import com.app.rickandmorty.ui.viewModel.FavoritesScreenViewModel
-import okhttp3.OkHttpClient
-import org.koin.androidx.viewmodel.dsl.viewModel
+import io.ktor.client.HttpClient
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.defaultRequest
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
+import io.ktor.http.URLProtocol
+import io.ktor.http.encodedPath
 import org.koin.androidx.viewmodel.dsl.viewModelOf
-import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import io.ktor.serialization.kotlinx.json.*
+import kotlinx.serialization.json.Json
+
 
 val connectionModule = module {
-    factoryOf(::provideOkHttpClient)
     singleOf(::provideConnection)
 }
 
@@ -32,6 +38,7 @@ val repositoryModule = module {
 
 @OptIn(ExperimentalPagingApi::class)
 val useCaseModule = module {
+    singleOf(::RickApiUseCase)
     single {
         Pager(
             config = PagingConfig(pageSize = 20),
@@ -44,22 +51,38 @@ val useCaseModule = module {
             }
         )
     }
-    viewModel { CharactersViewModel(get()) }
+    viewModelOf(::CharactersViewModel)
     viewModelOf(::FavoritesScreenViewModel)
-    viewModel { CharacterDetailsViewModel(get()) }
+    viewModelOf(::CharacterDetailsViewModel)
 }
 
-fun provideConnection(okHttpClient: OkHttpClient): RickApi = Retrofit.Builder()
-    .baseUrl("https://rickandmortyapi.com/api/")
-    .addConverterFactory(GsonConverterFactory.create())
-    .client(okHttpClient)
-    .build()
-    .create(RickApi::class.java)
+fun provideConnection(): HttpClient {
+    return HttpClient() {
+        install(ContentNegotiation) {
+            json(Json {
+                prettyPrint = true
+                isLenient = true
+                ignoreUnknownKeys = true
+            })
+        }
+        install(Logging) {
+            logger = object : Logger {
+                override fun log(message: String) {
+                    Log.d("Logger Ktor =>", message)
+                }
 
-fun provideOkHttpClient(): OkHttpClient {
-    return OkHttpClient.Builder().build()
+            }
+            level = LogLevel.ALL
+        }
+        defaultRequest {
+            url {
+                protocol = URLProtocol.HTTPS
+                host = "rickandmortyapi.com"
+                encodedPath = "/api/"
+            }
+        }
+    }
 }
-
 
 val dataModules = listOf(connectionModule, repositoryModule, useCaseModule)
 
